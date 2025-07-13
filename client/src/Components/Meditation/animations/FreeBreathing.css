@@ -1,0 +1,24 @@
+.gradient-ball {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: linear-gradient(-45deg,
+    #a5d6a7,   
+    #81c784,   
+    #fff176,   
+    #4db6ac,  
+    #64b5f6,  
+    #9575cd    
+  );
+  background-size: 600% 600%;
+  box-shadow: 0 0 40px rgba(255, 241, 118, 0.4); /* тёплый свет */
+  margin: 0 auto;
+}
+
+
+.gradient-label {
+  margin-top: 1rem;
+  font-size: 1.2rem;
+  color: #4caf50;
+  text-align: center;
+}

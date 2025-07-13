@@ -1,0 +1,29 @@
+/* FourSevenEightTriangle.css */
+.triangle-wrapper {
+  width: 300px;
+  margin: 0 auto;
+}
+
+.triangle-svg {
+  width: 100%;
+  height: auto;
+}
+
+.triangle-svg line {
+  stroke-linecap: round;
+}
+
+.countdown {
+  text-align: center;
+  margin-top: 8px;
+  font-size: 1.2rem;
+  font-family: sans-serif;
+}
+
+.phase {
+  font-weight: bold;
+}
+
+.seconds {
+  margin-left: 4px;
+}

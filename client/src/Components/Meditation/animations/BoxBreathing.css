@@ -1,0 +1,20 @@
+.box-breathing-wrapper {
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+
+.box-breathing-text {
+  text-align: center;
+  font-size: 1.2rem;
+  font-family: sans-serif;
+}
+
+.box-breathing-svg {
+  width: 100%;
+  height: 100%;
+}
