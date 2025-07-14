@@ -4,20 +4,23 @@
   align-items: center;
   width: 150px;
   margin: 0 auto;
+  padding: 0 30px;
 }
 
 .circle-breathing-shape {
   width: 150px;
   height: 150px;
-  background-color: #b2ebf2;
+  background-color: #c895d1;
   border-radius: 50%;
-  margin-bottom: 8px;
+  margin: 50px;
 }
 
 .circle-breathing-text {
   text-align: center;
   font-family: sans-serif;
 }
+
+
 
 
 

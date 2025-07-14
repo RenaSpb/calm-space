@@ -90,7 +90,7 @@ export default function BoxBreathing() {
       </svg>
 
       <div className="box-breathing-text">
-        <span className="phase">{phaseName}</span>
+        <span className="phase">{phaseName}</span>:
         <span className="seconds">{secondsLeft}</span>
       </div>
     </div>
