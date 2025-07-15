@@ -8,7 +8,7 @@ html, body {
   display: grid;
   align-items: center;   
   justify-content: center; 
-  gap: 1rem;               
+  gap: 2rem;               
   text-align: center;
 }
 
@@ -30,7 +30,7 @@ html, body {
   border: none;
   cursor: pointer;
 
-  background-color: #f9f4ee;
+  background-color: rgba(249, 244, 238, 0.5); 
   padding: 1rem;
   border-radius: 12px;
   gap: 0.5rem;
@@ -79,6 +79,7 @@ html, body {
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   transition: box-shadow 0.3s ease;
+  background-color: rgba(249, 244, 238, 0.5); 
 }
 
 .left-block img {
