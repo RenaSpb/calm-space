@@ -1,9 +1,9 @@
 .topbar {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: center;
   gap: 2rem;
-  padding: 0.5rem;
+  padding: 0.3rem;
   background-color: #f5f5f5;
   border-bottom: 1px solid #ddd;
   position: sticky;
@@ -14,7 +14,7 @@
 .topbar-button {
   background: none;
   border: none;
-  font-size: 1.2rem;
+  font-size: 1rem;
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -33,20 +33,32 @@
   outline: none;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 840px) {
   .topbar {
     gap: 1rem;
   }
+
+  .topbar-button {
+    font-size: 0.8rem;
+  }
+
+  .topbar-button img {
+    width: 24px;
+    height: 24px;
+  }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 600px) {
   .topbar {
-    flex-direction: column;
-    align-items: center;
     gap: 0.5rem;
   }
 
   .topbar-button {
-    font-size: 1rem;
+    font-size: 0.7rem;
+  }
+
+  .topbar-button img {
+    width: 20px;
+    height: 20px;
   }
 }

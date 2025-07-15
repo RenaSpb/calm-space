@@ -12,7 +12,7 @@ export default function TopBar({ setActivePage, activePage }) {
         alt="Meditation icon"
         style={{ width: "32px", height: "32px" }}
         />
-        Mood Tracker
+        Mood
       </button>
 
       <button
@@ -60,7 +60,7 @@ export default function TopBar({ setActivePage, activePage }) {
         alt="Meditation icon"
         style={{ width: "32px", height: "32px" }}
         />
-        Chat Helper
+        Chat
       </button>
     </header>
   );
