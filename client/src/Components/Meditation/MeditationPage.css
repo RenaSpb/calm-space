@@ -6,9 +6,10 @@ html, body {
 
 .meditation-page {
   display: grid;
-  align-items: center;   
-  justify-content: center; 
-  gap: 2rem;               
+  min-height: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
   text-align: center;
 }
 
@@ -29,15 +30,12 @@ html, body {
   width: 100%;
   border: none;
   cursor: pointer;
-
-  background-color: rgba(249, 244, 238, 0.5); 
+  background-color: rgba(249, 244, 238, 0.5);
   padding: 1rem;
   border-radius: 12px;
-  gap: 0.5rem;
-
   font-size: 18px;
-  text-align: center; 
-
+  gap: 0.5rem;
+  text-align: center;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s ease, transform 0.2s ease;
 }
@@ -60,78 +58,96 @@ html, body {
   transform: translateY(-2px);
 }
 
-.meditation-icon{
-  width: 40px;   
+.meditation-icon {
+  width: 40px;
   height: 40px;
   margin-bottom: 0.5rem;
-  object-fit: contain; 
+  object-fit: contain;
 }
 
+.text-and-meditations {
+  display: flex;
+  flex: 1;
+  min-height: 100%;
+  gap: 4rem;
+  justify-content: center;
+  align-items: stretch;
+}
 
 .left-block {
+  flex: 0 0 30%;
   width: 25vw;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #f9f4ee;
+  background-color: rgba(249, 244, 238, 0.5);
   padding: 1rem;
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   transition: box-shadow 0.3s ease;
-  background-color: rgba(249, 244, 238, 0.5); 
 }
 
 .left-block img {
   width: 100%;
-  height: auto;
   max-width: 100%;
   display: block;
+  height: auto;
 }
 
 .left-block p {
   font-size: 18px;
 }
 
-.text-and-meditations {
-  display: flex;
-  gap: 5rem;
-  justify-content: center;
-  align-items: flex-start; 
-}
-
-.left-block {
-  flex: 0 0 30%; 
-}
-
 .breathing-grid {
-  flex: 1; 
+  flex: 1;
 }
 
 @media (max-width: 1045px) and (min-width: 761px) {
   .text-and-meditations {
+    display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    align-items: stretch; 
     gap: 2rem;
   }
 
   .breathing-grid {
     width: 70%;
     margin: 0 auto;
-    display: grid; 
     grid-template-columns: repeat(2, 1fr);
   }
 
   .left-block {
     width: 100%;
     text-align: center;
-    margin-bottom: 2rem;
   }
 }
 
 @media (max-width: 760px) {
+  .text-and-meditations {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 100vh;
+    gap: 2rem;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .left-block {
+    width: 80%;
+  }
+
+  .left-block img {
+    width: 80%;
+    max-width: 100%;
+    display: block;
+    height: auto;
+  }
+
   .breathing-grid {
-    width: 100%;
+    width: 90%;
     grid-template-columns: 1fr;
   }
 }

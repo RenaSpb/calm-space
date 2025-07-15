@@ -1,35 +1,35 @@
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
 :root {
   line-height: 1.5;
   font-weight: 400;
-
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+body {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Quicksand', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  min-width: 320px;
+  height: 100%;
+  background-image: url('/icons/texture.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: repeat;
+}
+
 #root {
   display: flex;
   flex-direction: column;
   flex: 1;
-}
-
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  font-family: 'Quicksand', system-ui, Avenir, Helvetica, Arial, sans-serif;
-  margin: 0;
-  min-width: 320px;
-
-  background-image: url('/icons/texture.jpg'); 
-  background-size: cover;  
-  background-position: center; 
-  background-repeat: no-repeat; 
 }
 
 .app-container {
@@ -54,9 +54,11 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
+
 button:hover {
   border-color: #a5b6ac;
 }
+
 button:focus,
 button:focus-visible {
   outline: none;
@@ -65,7 +67,6 @@ button:focus-visible {
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
-    background-color: #ffffff;
   }
   a:hover {
     color: #747bff;
