@@ -1,19 +1,16 @@
-const express = require("express");
-const cors = require("cors");
+const express = require('express');
+const cors = require('cors');
+require('dotenv').config();
+
+const chatRoutes = require('./routes/chatRoutes');
+const moodRoutes = require('./routes/moodRoutes');
 
 const app = express();
-const PORT = process.env.PORT || 5000;
-
-// Middleware
 app.use(cors());
 app.use(express.json());
 
-// Test route
-app.get("/", (req, res) => {
-  res.send("✅ Backend is working!");
-});
+app.use('/chat', chatRoutes);  // 👉 сhat routes
+app.use('/mood', moodRoutes);  // 👉 mood routes
 
-// Run server
-app.listen(PORT, () => {
-  console.log(`🚀 Server is running on port ${PORT}`);
-});
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

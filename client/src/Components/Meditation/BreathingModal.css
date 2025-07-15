@@ -18,6 +18,7 @@
   max-width: 90%;
   max-height: 90%;
   overflow: auto;
+  background-color: rgba(249, 244, 238);
 }
 
 .close-button {
