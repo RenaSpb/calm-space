@@ -5,78 +5,80 @@ const sounds = [
   {
     id: 1,
     title: "Warm Campfire",
-    src: "/sounds/warm-camp-fire-high-quality-176816.mp3",
-    loop: true
+    src: "/sounds/Warm Campfire.mp3",
+    loop: true,
   },
   {
     id: 2,
     title: "Walking Through Forest",
-    src: "/sounds/slowly-walking-through-forest-audio_3-237672.mp3",
-    loop: true
+    src: "/sounds/Walking Through Forest.mp3",
+    loop: true,
   },
   {
     id: 3,
     title: "Running Stream",
-    src: "/sounds/running-stream-water-sound-239612.mp3",
-    loop: true
+    src: "/sounds/Running Stream.mp3",
+    loop: true,
   },
   {
     id: 4,
     title: "River Sound",
-    src: "/sounds/river-sound-360204.mp3",
-    loop: true
+    src: "/sounds/River Sound.mp3",
+    loop: true,
   },
   {
     id: 5,
     title: "Rain Sound",
-    src: "/sounds/rain-sound-272604.mp3",
-    loop: true
+    src: "/sounds/Rain Sound.mp3",
+    loop: true,
   },
   {
     id: 6,
     title: "Mountain Forest",
-    src: "/sounds/mountain-forest-high-quality-sound-176826.mp3",
-    loop: true
+    src: "/sounds/Mountain Forest.mp3",
+    loop: true,
   },
   {
     id: 7,
     title: "Forest Sounds",
-    src: "/sounds/forest-sounds-nature-233882.mp3",
-    loop: true
+    src: "/sounds/Forest Sounds.mp3",
+    loop: true,
   },
   {
     id: 8,
     title: "Forest Ambience",
-    src: "/sounds/forest-ambience-296528.mp3",
-    loop: true
+    src: "/sounds/Forest Ambience.mp3",
+    loop: true,
   },
   {
     id: 9,
     title: "Fire in Night Forest",
-    src: "/sounds/fire-in-the-night-forest-226199.mp3",
-    loop: true
+    src: "/sounds/Fire in Night Forest.mp3",
+    loop: true,
   },
   {
     id: 10,
     title: "Frogs in Forest Water",
-    src: "/sounds/croaking-sound-of-frogs-in-the-forest-water-309353.mp3",
-    loop: true
+    src: "/sounds/Frogs in Forest Water.mp3",
+    loop: true,
   },
   {
     id: 11,
     title: "Cold Snowfall",
-    src: "/sounds/cold-snowfall-ambience-5-minutes-sound-effect-164512.mp3",
-    loop: true
+    src: "/sounds/Cold Snowfall.mp3",
+    loop: true,
   },
   {
     id: 12,
     title: "15 Minutes Rain",
-    src: "/sounds/15-minutes-of-rain-sound-for-relaxation-and-sleep-study-312863.mp3",
-    loop: true
-  }
+    src: "/sounds/15 Minutes Rain.mp3",
+    loop: true,
+  },
 ];
 
 export default function SoundsPage() {
+  const [activeAudio, setActiveAudio] = useState(null);
+
   return (
     <div className="sounds-page">
       <h2>Relaxing Sounds</h2>
@@ -87,6 +89,8 @@ export default function SoundsPage() {
             title={sound.title}
             src={sound.src}
             loop={sound.loop}
+            activeAudio={activeAudio}
+            setActiveAudio={setActiveAudio}
           />
         ))}
       </div>
@@ -94,7 +98,7 @@ export default function SoundsPage() {
   );
 }
 
-function SoundPlayer({ title, src, loop }) {
+function SoundPlayer({ title, src, loop, activeAudio, setActiveAudio }) {
   const audioRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
@@ -104,17 +108,24 @@ function SoundPlayer({ title, src, loop }) {
     const audio = audioRef.current;
     if (!audio) return;
 
-    if (audio.paused) {
+    if (isPlaying) {
+      audio.pause();
+    } else {
+      if (activeAudio && activeAudio !== audio) {
+        activeAudio.pause();
+      }
+
       audio
         .play()
-        .then(() => setIsPlaying(true))
+        .then(() => {
+          setActiveAudio(audio);
+          setIsPlaying(true);
+        })
         .catch((err) => {
           if (err.name !== "AbortError") {
             console.error(`Playback error:`, err);
           }
         });
-    } else {
-      audio.pause();
     }
   };
 
@@ -148,18 +159,22 @@ function SoundPlayer({ title, src, loop }) {
   return (
     <div className="sound-item">
       <p>{title}</p>
-        <button onClick={togglePlay} className="sound-button" aria-label={isPlaying ? "Pause" : "Play"}>
-  {isPlaying ? (
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-      <rect x="5" y="4" width="4" height="16" />
-      <rect x="15" y="4" width="4" height="16" />
-    </svg>
-  ) : (
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-      <polygon points="6,4 20,12 6,20" />
-    </svg>
-  )}
-</button>
+      <button
+        onClick={togglePlay}
+        className="sound-button"
+        aria-label={isPlaying ? "Pause" : "Play"}
+      >
+        {isPlaying ? (
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <rect x="5" y="4" width="4" height="16" />
+            <rect x="15" y="4" width="4" height="16" />
+          </svg>
+        ) : (
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="6,4 20,12 6,20" />
+          </svg>
+        )}
+      </button>
 
       <input
         type="range"
