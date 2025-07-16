@@ -1,0 +1,87 @@
+.chat-helper {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.messages {
+  flex: 1;
+  padding: 1rem;
+  background: #f5f5f5;
+  border: 1px solid #ddd;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.user-message {
+  text-align: right;
+  margin: 0.5rem 0;
+  background: #d8f0db;
+  padding: 0.5rem;
+  border-radius: 8px;
+}
+
+.ai-message {
+  text-align: left;
+  margin: 0.5rem 0;
+  background: #e8e8e8;
+  padding: 0.5rem;
+  border-radius: 8px;
+}
+
+.input-area {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.input-area input {
+  flex: 1;
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+
+.input-area input:hover {
+  border-color: gray;
+  outline: none;
+}
+
+.input-area input:focus {
+  border-color: gray;
+  outline: none; 
+}
+
+.input-area button {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.role-selector {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.role-selector input[type="radio"] {
+  accent-color: rgb(79, 80, 76); 
+}
+
+.chat-controls {
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0;
+}
+
+.clear-button {
+  background-color: #d7d1d1;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.clear-button:hover {
+  background-color: #c5a6a5;
+}
