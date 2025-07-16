@@ -148,9 +148,18 @@ function SoundPlayer({ title, src, loop }) {
   return (
     <div className="sound-item">
       <p>{title}</p>
-      <button onClick={togglePlay} className="sound-button">
-        {isPlaying ? "Pause" : "Play"}
-      </button>
+        <button onClick={togglePlay} className="sound-button" aria-label={isPlaying ? "Pause" : "Play"}>
+  {isPlaying ? (
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <rect x="5" y="4" width="4" height="16" />
+      <rect x="15" y="4" width="4" height="16" />
+    </svg>
+  ) : (
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="6,4 20,12 6,20" />
+    </svg>
+  )}
+</button>
 
       <input
         type="range"

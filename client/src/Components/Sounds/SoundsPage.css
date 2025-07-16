@@ -8,7 +8,6 @@
   margin-bottom: 1rem;
 }
 
-
 .sound-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -23,6 +22,11 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s ease, transform 0.2s ease;
   cursor: pointer;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .sound-item:hover {
@@ -33,23 +37,36 @@
 .sound-item p {
   margin-bottom: 0.5rem;
   font-weight: 600;
+  text-align: center;
 }
 
 .sound-button {
-  background-color: #a8d5ba;     
-  color: #1a3c34;              
+  background-color: #a8d5ba;
+  color: #1a3c34;
   border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
-  font-weight: bold;
   transition: background-color 0.3s ease, transform 0.2s ease;
-  font-size: 1rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 0;
+  font-size: initial;
 }
 
 .sound-button:hover {
-  background-color: #8ccaae;    
-  transform: translateY(-2px);
+  background-color: #8ccaae;
+  transform: scale(1.05);
+}
+
+.sound-button svg {
+  width: 24px;
+  height: 24px;
+  fill: #1a3c34;
+  pointer-events: none;
 }
 
 .progress-bar {
@@ -66,7 +83,7 @@
   appearance: none;
   width: 12px;
   height: 12px;
-  background: #1a3c34;   
+  background: #1a3c34;
   border-radius: 50%;
   cursor: pointer;
 }
