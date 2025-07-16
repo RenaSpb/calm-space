@@ -4,9 +4,10 @@
 }
 
 .sounds-page h2 {
-  margin-top: -1rem;  
-  margin-bottom: 1rem; 
+  margin-top: -1rem;
+  margin-bottom: 1rem;
 }
+
 
 .sound-grid {
   display: grid;
@@ -35,18 +36,20 @@
 }
 
 .sound-button {
-  background-color: #444;
-  color: #fff;
+  background-color: #a8d5ba;     
+  color: #1a3c34;              
   border: none;
   padding: 0.5rem 1rem;
   border-radius: 8px;
   cursor: pointer;
   font-weight: bold;
-  transition: background 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  font-size: 1rem;
 }
 
 .sound-button:hover {
-  background-color: #222;
+  background-color: #8ccaae;    
+  transform: translateY(-2px);
 }
 
 .progress-bar {
@@ -63,7 +66,7 @@
   appearance: none;
   width: 12px;
   height: 12px;
-  background: #333;
+  background: #1a3c34;   
   border-radius: 50%;
   cursor: pointer;
 }
@@ -71,7 +74,7 @@
 .progress-bar::-moz-range-thumb {
   width: 12px;
   height: 12px;
-  background: #333;
+  background: #1a3c34;
   border-radius: 50%;
   cursor: pointer;
 }
