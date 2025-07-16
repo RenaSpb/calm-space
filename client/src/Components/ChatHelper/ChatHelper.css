@@ -57,6 +57,7 @@
     display: flex;
     justify-content: center;
     gap: 20px;
+    font-size: 18px;
 }
 
 .role-selector input[type="radio"] {

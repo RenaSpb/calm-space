@@ -12,7 +12,7 @@ export default function TopBar({ setActivePage, activePage }) {
         alt="Meditation icon"
         style={{ width: "32px", height: "32px" }}
         />
-        Mood
+        <span className="button-label">Mood</span>
       </button>
 
       <button
@@ -24,7 +24,7 @@ export default function TopBar({ setActivePage, activePage }) {
         alt="Meditation icon"
         style={{ width: "32px", height: "32px" }}
         />
-        Meditation
+        <span className="button-label">Meditation</span>
       </button>
 
       <button
@@ -36,7 +36,7 @@ export default function TopBar({ setActivePage, activePage }) {
         alt="Meditation icon"
         style={{ width: "32px", height: "32px" }}
         />
-        Videos
+        <span className="button-label">Videos</span>
       </button>
 
       <button
@@ -48,7 +48,7 @@ export default function TopBar({ setActivePage, activePage }) {
         alt="Meditation icon"
         style={{ width: "32px", height: "32px" }}
         />
-        Sounds
+        <span className="button-label">Sounds</span>
       </button>
 
       <button
@@ -60,7 +60,7 @@ export default function TopBar({ setActivePage, activePage }) {
         alt="Meditation icon"
         style={{ width: "32px", height: "32px" }}
         />
-        Chat
+        <span className="button-label">Chat</span>
       </button>
     </header>
   );
