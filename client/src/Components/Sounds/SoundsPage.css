@@ -20,6 +20,7 @@
   padding: 1rem;
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  background-color: rgba(249, 244, 238, 0.5);
   transition: box-shadow 0.3s ease, transform 0.2s ease;
   cursor: pointer;
 

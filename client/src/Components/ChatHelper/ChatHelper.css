@@ -8,10 +8,11 @@
 .messages {
   flex: 1;
   padding: 1rem;
-  background: #f5f5f5;
   border: 1px solid #ddd;
   max-height: 400px;
   overflow-y: auto;
+  background-color: rgba(249, 244, 238, 0.5);
+  border-radius: 10px;
 }
 
 .user-message {
@@ -48,13 +49,8 @@
 }
 
 .input-area input:focus {
-  border-color: gray;
+  border-color: rgb(172, 170, 170);
   outline: none; 
-}
-
-.input-area button {
-  padding: 0.5rem 1rem;
-  cursor: pointer;
 }
 
 .role-selector {
@@ -73,8 +69,9 @@
   margin: 1rem 0;
 }
 
+.input-area button,
 .clear-button {
-  background-color: #d7d1d1;
+  background-color: #dad5cd;
   border: none;
   padding: 0.5rem 1rem;
   border-radius: 6px;
@@ -83,5 +80,10 @@
 }
 
 .clear-button:hover {
-  background-color: #c5a6a5;
+  background-color: #cfc5c5;
 }
+
+.input-area button:hover {
+  background-color: #d9dbce;
+}
+
