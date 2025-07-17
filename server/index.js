@@ -14,3 +14,12 @@ app.use('/chat', chatRoutes);  // 👉 сhat routes
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+app.post("/mood", (req, res) => {
+  const { mood, note } = req.body;
+  console.log("Received mood entry:", { mood, note });
+
+  // i will save to a db here:
+  res.status(200).json({ message: "Mood saved!" });
+});
+

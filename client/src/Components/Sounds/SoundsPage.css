@@ -16,14 +16,12 @@
 }
 
 .sound-item {
-  background: #f9f9f9;
+  background: rgba(249, 244, 238, 0.5); 
   padding: 1rem;
   border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  background-color: rgba(249, 244, 238, 0.5);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   transition: box-shadow 0.3s ease, transform 0.2s ease;
   cursor: pointer;
-
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -31,7 +29,7 @@
 }
 
 .sound-item:hover {
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
   transform: translateY(-4px);
 }
 
@@ -42,8 +40,8 @@
 }
 
 .sound-button {
-  background-color: #a8d5ba;
-  color: #1a3c34;
+  background-color: #dad5cd; 
+  color: #2c2b29;
   border: none;
   border-radius: 50%;
   width: 48px;
@@ -53,20 +51,19 @@
   justify-content: center;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
   padding: 0;
-  font-size: initial;
 }
 
 .sound-button:hover {
-  background-color: #8ccaae;
+  background-color: #cfc5c5; 
   transform: scale(1.05);
 }
 
 .sound-button svg {
   width: 24px;
   height: 24px;
-  fill: #1a3c34;
+  fill: #2c2b29;
   pointer-events: none;
 }
 
@@ -84,7 +81,7 @@
   appearance: none;
   width: 12px;
   height: 12px;
-  background: #1a3c34;
+  background: #2c2b29;
   border-radius: 50%;
   cursor: pointer;
 }
@@ -92,7 +89,7 @@
 .progress-bar::-moz-range-thumb {
   width: 12px;
   height: 12px;
-  background: #1a3c34;
+  background: #2c2b29;
   border-radius: 50%;
   cursor: pointer;
 }
@@ -109,6 +106,7 @@
   font-size: 1.25rem;
   cursor: pointer;
   transition: transform 0.2s;
+  color: #4f504c; 
 }
 
 .favorite-button:hover {
@@ -121,6 +119,7 @@
   margin: 10px auto;
   object-fit: contain;
   transition: transform 0.3s ease;
+  filter: brightness(0.8); 
 }
 
 .sound-item:hover .sound-icon {
