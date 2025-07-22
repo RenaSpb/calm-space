@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
+const pool = require('./db');
 
 const chatRoutes = require('./routes/chatRoutes');
 //const moodRoutes = require('./routes/moodRoutes');
@@ -23,3 +24,12 @@ app.post("/mood", (req, res) => {
   res.status(200).json({ message: "Mood saved!" });
 });
 
+app.get("/test-db", async (req, res) => {
+  try {
+    const result = await pool.query("SELECT NOW()");
+    res.json({ time: result.rows[0].now });
+  } catch (error) {
+    console.error("❌ Database connection error:", error);
+    res.status(500).json({ error: "Database connection failed" });
+  }
+});
