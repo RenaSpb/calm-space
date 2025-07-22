@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./MoodTracker.css"; 
 
 const moods = [
@@ -18,20 +18,54 @@ const MoodTracker = () => {
     setSelectedMood(moodId);
   };
 
-  const handleSave = () => {
-    if (!selectedMood) return;
+  useEffect(() => {
+  const fetchHistory = async () => {
+    try {
+      const response = await fetch('http://localhost:5000/mood');
+      if (!response.ok) throw new Error('Failed to fetch moods');
+      const data = await response.json();
+      setHistory(
+        data.map(entry => ({
+          mood: moods.find(m => m.label === entry.mood) || { icon: "❓", label: entry.mood },
+          note: entry.note,
+          date: new Date(entry.created_at).toLocaleString(),
+        }))
+      );
+    } catch (error) {
+      console.error('Error loading mood history:', error);
+    }
+  };
+  fetchHistory();
+}, []);
 
-    const newEntry = {
-      mood: moods.find((m) => m.id === selectedMood),
-      note,
-      date: new Date().toLocaleString(),
-    };
+const handleSave = async () => {
+  if (!selectedMood) return;
+
+  const newEntry = {
+    mood: moods.find((m) => m.id === selectedMood).label,
+    note,
+    date: new Date().toLocaleString(),
+  };
+
+  try {
+    const response = await fetch('http://localhost:5000/mood', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ mood: newEntry.mood, note: newEntry.note }),
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to save mood');
+    }
 
     setHistory([newEntry, ...history]);
     setSelectedMood(null);
-    setNote("");
-  };
-
+    setNote('');
+  } catch (error) {
+    console.error('Error saving mood:', error);
+    alert('Could not save mood. Please try again.');
+  }
+};
   
   return (
     <div className="mood-tracker">
