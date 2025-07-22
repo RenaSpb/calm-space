@@ -10,9 +10,15 @@ import Affirmations from "./Components/Affirmations/Affirmations";
 
 export default function App() {
   const [activePage, setActivePage] = useState("mood-tracker");
-
   const [bgPlaying, setBgPlaying] = useState(false);
+  const [natureAudio, setNatureAudio] = useState(null);
   const bgAudioRef = useRef(null);
+
+  const pauseNatureSound = () => {
+  if (natureAudio) {
+    natureAudio.pause();
+  }
+};
 
   useEffect(() => {
     const audio = bgAudioRef.current;
@@ -20,6 +26,8 @@ export default function App() {
     audio.loop = true;
 
     if (bgPlaying) {
+      pauseNatureSound(); 
+
       audio.play().catch((err) => {
         console.warn("Autoplay prevented:", err);
       });
@@ -27,6 +35,14 @@ export default function App() {
       audio.pause();
     }
   }, [bgPlaying]);
+
+  const pauseBackgroundMusic = () => {
+    const audio = bgAudioRef.current;
+    if (audio && !audio.paused) {
+      audio.pause();
+      setBgPlaying(false);
+    }
+  };
 
   return (
     <div className="app-container">
@@ -40,14 +56,18 @@ export default function App() {
       <main style={{ flex: 1, padding: "2rem" }}>
         {activePage === "meditation" && <MeditationPage />}
         {activePage === "videos" && <VideosPage />}
-        {activePage === "sounds" && <SoundsPage />}
+        {activePage === "sounds" && (
+          <SoundsPage 
+          pauseBackgroundMusic={pauseBackgroundMusic}
+          setNatureAudio={setNatureAudio}
+          />
+        )}
         {activePage === "mood-tracker" && <MoodTracker />}
         {activePage === "affirmations" && <Affirmations />}
         {activePage === "chat-helper" && <ChatHelper />}
       </main>
 
       <Footer />
-
       <audio ref={bgAudioRef} src="/sounds/background.mp3" />
     </div>
   );

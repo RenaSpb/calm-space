@@ -76,7 +76,7 @@ const sounds = [
   },
 ];
 
-export default function SoundsPage() {
+export default function SoundsPage({ pauseBackgroundMusic, setNatureAudio }) {
   const [activeAudio, setActiveAudio] = useState(null);
 
   return (
@@ -91,6 +91,8 @@ export default function SoundsPage() {
             loop={sound.loop}
             activeAudio={activeAudio}
             setActiveAudio={setActiveAudio}
+            pauseBackgroundMusic={pauseBackgroundMusic}
+            setNatureAudio={setNatureAudio}
           />
         ))}
       </div>
@@ -98,7 +100,7 @@ export default function SoundsPage() {
   );
 }
 
-function SoundPlayer({ title, src, loop, activeAudio, setActiveAudio }) {
+function SoundPlayer({ title, src, loop, activeAudio, setActiveAudio, pauseBackgroundMusic, setNatureAudio }) {
   const audioRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
@@ -111,6 +113,8 @@ function SoundPlayer({ title, src, loop, activeAudio, setActiveAudio }) {
     if (isPlaying) {
       audio.pause();
     } else {
+      pauseBackgroundMusic?.();
+
       if (activeAudio && activeAudio !== audio) {
         activeAudio.pause();
       }
@@ -120,6 +124,7 @@ function SoundPlayer({ title, src, loop, activeAudio, setActiveAudio }) {
         .then(() => {
           setActiveAudio(audio);
           setIsPlaying(true);
+          setNatureAudio?.(audio);
         })
         .catch((err) => {
           if (err.name !== "AbortError") {
@@ -128,6 +133,7 @@ function SoundPlayer({ title, src, loop, activeAudio, setActiveAudio }) {
         });
     }
   };
+
 
   useEffect(() => {
     const audio = audioRef.current;
