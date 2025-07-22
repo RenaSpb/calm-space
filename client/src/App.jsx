@@ -5,7 +5,8 @@ import MeditationPage from "./Components/Meditation/MeditationPage";
 import VideosPage from "./Components/Videos/VideosPage";
 import SoundsPage from "./Components/Sounds/SoundsPage";
 import MoodTracker from "./Components/MoodTracker/MoodTracker";
-import ChatHelper from "./Components/ChatHelper/ChatHelper"
+import ChatHelper from "./Components/ChatHelper/ChatHelper";
+import Affirmations from "./Components/Affirmations/Affirmations";
 
 export default function App() {
   const [activePage, setActivePage] = useState("mood-tracker");
@@ -19,6 +20,7 @@ export default function App() {
         {activePage === "videos" && <VideosPage />}
         {activePage === "sounds" && <SoundsPage />}
         {activePage === "mood-tracker" && <MoodTracker />}
+        {activePage === "affirmations" && <Affirmations />}
         {activePage === "chat-helper" && <ChatHelper />}
       </main>
 

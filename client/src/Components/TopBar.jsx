@@ -9,7 +9,7 @@ export default function TopBar({ setActivePage, activePage }) {
       >
         <img
         src="/icons/mood.png"  
-        alt="Meditation icon"
+        alt="Mood icon"
         style={{ width: "32px", height: "32px" }}
         />
         <span className="button-label">Mood</span>
@@ -33,7 +33,7 @@ export default function TopBar({ setActivePage, activePage }) {
       >
         <img
         src="/icons/youtube.png"  
-        alt="Meditation icon"
+        alt="Youtube icon"
         style={{ width: "32px", height: "32px" }}
         />
         <span className="button-label">Videos</span>
@@ -45,10 +45,22 @@ export default function TopBar({ setActivePage, activePage }) {
       >
         <img
         src="/icons/music.png"  
-        alt="Meditation icon"
+        alt="Sounds icon"
         style={{ width: "32px", height: "32px" }}
         />
         <span className="button-label">Sounds</span>
+      </button>
+
+      <button
+        className={`topbar-button ${activePage === "affirmations" ? "active" : ""}`}
+        onClick={() => setActivePage("affirmations")}
+      >
+        <img
+        src="/icons/affirmation.png"  
+        alt="Affirmation icon"
+        style={{ width: "32px", height: "32px" }}
+        />
+        <span className="button-label">Affirmations</span>
       </button>
 
       <button
@@ -57,7 +69,7 @@ export default function TopBar({ setActivePage, activePage }) {
       >
         <img
         src="/icons/chat.png"  
-        alt="Meditation icon"
+        alt="Chat icon"
         style={{ width: "32px", height: "32px" }}
         />
         <span className="button-label">Chat</span>
