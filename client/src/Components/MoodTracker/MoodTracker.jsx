@@ -40,12 +40,20 @@ const MoodTracker = () => {
 
 const handleSave = async () => {
   if (!selectedMood) return;
+  
+  const selected = moods.find((m) => m.id === selectedMood);
 
   const newEntry = {
-    mood: moods.find((m) => m.id === selectedMood).label,
+    mood: selected.label,
     note,
     date: new Date().toLocaleString(),
   };
+
+  // const newEntry = {
+  //   mood: moods.find((m) => m.id === selectedMood).label,
+  //   note,
+  //   date: new Date().toLocaleString(),
+  // };
 
   try {
     const response = await fetch('http://localhost:5000/mood', {
@@ -98,12 +106,17 @@ const handleSave = async () => {
         <div className="mood-history">
           <h3>Mood History</h3>
           <ul>
-            {history.map((entry, index) => (
+            {history.map((entry, index) => {
+              const moodObj = typeof entry.mood === "string"
+              ? moods.find((m) => m.label === entry.mood) || { icon: "❓", label: entry.mood }
+              : entry.mood;
+            return (
               <li key={index}>
-                <span>{entry.date}</span> — <strong>{entry.mood.icon} {entry.mood.label}</strong>
-                {entry.note && <p className="note">"{entry.note}"</p>}
+              <span>{entry.date}</span> — <strong>{moodObj.icon} {moodObj.label}</strong>
+              {entry.note && <p className="note">"{entry.note}"</p>}
               </li>
-            ))}
+              );
+            })}
           </ul>
         </div>
       )}
