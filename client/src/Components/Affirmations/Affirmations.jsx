@@ -1,19 +1,46 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./Affirmations.css";
 
 const images = Array.from({ length: 10 }, (_, i) => `/img/af${i + 1}.png`);
 
 export default function AffirmationSlider() {
   const [current, setCurrent] = useState(0);
+  const [fadeClass, setFadeClass] = useState("fade-in");
 
-  const nextSlide = () => setCurrent((prev) => (prev + 1) % images.length);
-  const prevSlide = () => setCurrent((prev) => (prev - 1 + images.length) % images.length);
+  const showRandom = () => {
+    let newIndex;
+    do {
+      newIndex = Math.floor(Math.random() * images.length);
+    } while (newIndex === current);
+    setCurrent(newIndex);
+    setFadeClass("fade-in");
+  };
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setFadeClass("");
+    }, 500);
+    return () => clearTimeout(timeout);
+  }, [current]);
 
   return (
     <div className="slider-container">
-      <button onClick={prevSlide} className="nav-button">←</button>
-      <img src={images[current]} alt={`Affirmation ${current + 1}`} className="slider-image" />
-      <button onClick={nextSlide} className="nav-button">→</button>
+      <img
+        src={images[current]}
+        alt={`Affirmation ${current + 1}`}
+        className={`slider-image ${fadeClass}`}
+      />
+      <button
+        onClick={showRandom}
+        className="random-button"
+        aria-label="New affirmation"
+      >
+        <img
+          src="/icons/refresh.png"
+          alt="Refresh icon"
+          className="refresh-icon"
+        />
+      </button>
     </div>
   );
 }
