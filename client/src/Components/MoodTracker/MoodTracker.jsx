@@ -21,7 +21,9 @@ const MoodTracker = () => {
   useEffect(() => {
     const fetchHistory = async () => {
       try {
-        const response = await fetch("http://localhost:5000/mood");
+        // const response = await fetch("http://localhost:5000/mood");
+        // const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/mood`);
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/mood`);
         if (!response.ok) throw new Error("Failed to fetch moods");
         const data = await response.json();
         setHistory(
