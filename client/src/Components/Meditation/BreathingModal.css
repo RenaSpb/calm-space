@@ -8,6 +8,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  animation: fadeIn 0.3s ease forwards;
+  opacity: 0;
 }
 
 .modal-content {
@@ -19,6 +21,12 @@
   max-height: 90%;
   overflow: auto;
   background-color: rgba(249, 244, 238);
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .close-button {
@@ -40,4 +48,16 @@
 
 .modal-content h3 {
   text-align: center;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  to {
+    transform: translateY(0);
+  }
 }

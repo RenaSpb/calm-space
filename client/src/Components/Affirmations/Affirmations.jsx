@@ -19,28 +19,30 @@ export default function AffirmationSlider() {
   useEffect(() => {
     const timeout = setTimeout(() => {
       setFadeClass("");
-    }, 500);
+    }, 300);
     return () => clearTimeout(timeout);
   }, [current]);
 
   return (
-    <div className="slider-container">
-      <img
-        src={images[current]}
-        alt={`Affirmation ${current + 1}`}
-        className={`slider-image ${fadeClass}`}
-      />
-      <button
-        onClick={showRandom}
-        className="random-button"
-        aria-label="New affirmation"
-      >
+    <div>
+      <div className="slider-container">
         <img
-          src="/icons/refresh.png"
-          alt="Refresh icon"
-          className="refresh-icon"
+          src={images[current]}
+          alt={`Affirmation ${current + 1}`}
+          className={`slider-image ${fadeClass}`}
         />
-      </button>
+        <button
+          onClick={showRandom}
+          className="random-button"
+          aria-label="New affirmation"
+        >
+          <img
+            src="/icons/refresh.png"
+            alt="Refresh icon"
+            className="refresh-icon"
+          />
+        </button>
+      </div>
     </div>
   );
 }

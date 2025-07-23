@@ -6,72 +6,84 @@ const sounds = [
     id: 1,
     title: "Warm Campfire",
     src: "/sounds/Warm Campfire.mp3",
+    image: "/img/sound/1.jpg",
     loop: true,
   },
   {
     id: 2,
     title: "Walking Through Forest",
     src: "/sounds/Walking Through Forest.mp3",
+    image: "/img/sound/2.jpg",
     loop: true,
   },
   {
     id: 3,
     title: "Running Stream",
     src: "/sounds/Running Stream.mp3",
+    image: "/img/sound/3.jpg",
     loop: true,
   },
   {
     id: 4,
     title: "River Sound",
     src: "/sounds/River Sound.mp3",
+    image: "/img/sound/4.jpg",
     loop: true,
   },
   {
     id: 5,
     title: "Rain Sound",
     src: "/sounds/Rain Sound.mp3",
+    image: "/img/sound/5.jpg",
     loop: true,
   },
   {
     id: 6,
     title: "Mountain Forest",
     src: "/sounds/Mountain Forest.mp3",
+    image: "/img/sound/6.jpg",
     loop: true,
   },
   {
     id: 7,
     title: "Forest Sounds",
     src: "/sounds/Forest Sounds.mp3",
+    image: "/img/sound/7.jpg",
     loop: true,
   },
   {
     id: 8,
     title: "Forest Ambience",
     src: "/sounds/Forest Ambience.mp3",
+    image: "/img/sound/8.jpg",
     loop: true,
   },
   {
     id: 9,
     title: "Fire in Night Forest",
     src: "/sounds/Fire in Night Forest.mp3",
+    image: "/img/sound/9.jpg",
     loop: true,
   },
   {
     id: 10,
     title: "Frogs in Forest Water",
     src: "/sounds/Frogs in Forest Water.mp3",
+    image: "/img/sound/10.jpg",
     loop: true,
   },
   {
     id: 11,
     title: "Cold Snowfall",
     src: "/sounds/Cold Snowfall.mp3",
+    image: "/img/sound/11.jpg",
     loop: true,
   },
   {
     id: 12,
     title: "15 Minutes Rain",
     src: "/sounds/15 Minutes Rain.mp3",
+    image: "/img/sound/12.jpg",
     loop: true,
   },
 ];
@@ -93,6 +105,7 @@ export default function SoundsPage({ pauseBackgroundMusic, setNatureAudio }) {
             setActiveAudio={setActiveAudio}
             pauseBackgroundMusic={pauseBackgroundMusic}
             setNatureAudio={setNatureAudio}
+            image={sound.image}
           />
         ))}
       </div>
@@ -100,7 +113,16 @@ export default function SoundsPage({ pauseBackgroundMusic, setNatureAudio }) {
   );
 }
 
-function SoundPlayer({ title, src, loop, activeAudio, setActiveAudio, pauseBackgroundMusic, setNatureAudio }) {
+function SoundPlayer({
+  title,
+  src,
+  loop,
+  activeAudio,
+  image,
+  setActiveAudio,
+  pauseBackgroundMusic,
+  setNatureAudio,
+}) {
   const audioRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
@@ -134,7 +156,6 @@ function SoundPlayer({ title, src, loop, activeAudio, setActiveAudio, pauseBackg
     }
   };
 
-
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
@@ -163,36 +184,46 @@ function SoundPlayer({ title, src, loop, activeAudio, setActiveAudio, pauseBackg
   };
 
   return (
-    <div className="sound-item">
-      <p>{title}</p>
-      <button
-        onClick={togglePlay}
-        className="sound-button"
-        aria-label={isPlaying ? "Pause" : "Play"}
-      >
-        {isPlaying ? (
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <rect x="5" y="4" width="4" height="16" />
-            <rect x="15" y="4" width="4" height="16" />
-          </svg>
-        ) : (
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <polygon points="6,4 20,12 6,20" />
-          </svg>
-        )}
-      </button>
+    <div className="page-fade">
+      <div className="sound-item">
+        <div
+          className="sound-bg"
+          style={{ backgroundImage: `url(${image})` }}
+        ></div>
 
-      <input
-        type="range"
-        min="0"
-        max={duration}
-        step="0.1"
-        value={currentTime}
-        onChange={handleSeek}
-        className="progress-bar"
-      />
+        <div className="sound-overlay">
+          <p>{title}</p>
 
-      <audio ref={audioRef} src={src} loop={loop} />
+          <button
+            onClick={togglePlay}
+            className="sound-button"
+            aria-label={isPlaying ? "Pause" : "Play"}
+          >
+            {isPlaying ? (
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <rect x="5" y="4" width="4" height="16" />
+                <rect x="15" y="4" width="4" height="16" />
+              </svg>
+            ) : (
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <polygon points="6,4 20,12 6,20" />
+              </svg>
+            )}
+          </button>
+
+          <input
+            type="range"
+            min="0"
+            max={duration}
+            step="0.1"
+            value={currentTime}
+            onChange={handleSeek}
+            className="progress-bar"
+          />
+
+          <audio ref={audioRef} src={src} loop={loop} />
+        </div>
+      </div>
     </div>
   );
 }

@@ -20,6 +20,13 @@
   align-items: center;
 }
 
+.topbar-button-sound {
+  background: none;
+  border: none;
+  align-items: center;
+}
+
+
 .topbar-button:hover {
   text-decoration: none;
 }
@@ -34,11 +41,12 @@
 
 @media (max-width: 840px) {
   .topbar {
-    gap: 1rem;
+    gap: 0.5rem;
   }
 
-  .topbar-button {
-    font-size: 0.8rem;
+  .topbar-button, .topbar-button-sound {
+    padding: 1rem 1rem;
+    font-size: 0.9rem;
   }
 
   .topbar-button img {
@@ -47,13 +55,14 @@
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 650px) {
   .topbar {
-    gap: 0.5rem;
+    gap: 0.2rem;
   }
 
-  .topbar-button {
+  .topbar-button, .topbar-button-sound  {
     font-size: 0.7rem;
+    padding: 1rem 0.9rem;
   }
 
   .topbar-button img {

@@ -53,8 +53,11 @@ export default function App() {
         toggleBgMusic={() => setBgPlaying((prev) => !prev)}
       />
 
-      <main style={{ flex: 1, padding: "2rem" }}>
-        {activePage === "meditation" && <MeditationPage />}
+      <main style={{ flex: 1, padding: "0 6rem 2rem" }}>
+        {activePage === "meditation" && <MeditationPage
+          bgPlaying={bgPlaying}
+          toggleBgMusic={() => setBgPlaying((prev) => !prev)}
+        />}
         {activePage === "videos" && <VideosPage />}
         {activePage === "sounds" && (
           <SoundsPage 
