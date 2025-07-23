@@ -15,8 +15,8 @@ export default function VideosPage() {
       title: "2 Hours of Rain and Thunderstorm Sounds"
     },
     {
-      id: "le75RBN2kNU",
-      title: "Techno Flow – 30 min Driving Beat for Work, Movement, Mind"
+      id: "9Qwp89Zw8HU",
+      title: "Relaxing Piano & Cozy Bedroom Ambience"
     },
     {
       id: "HZKI6UQF8nQ",
@@ -37,6 +37,10 @@ export default function VideosPage() {
     {
       id: "uVbIX7B6BsA",
       title: "2 Hours of Soothing Fireplace Sounds"
+    },
+    {
+      id: "J4d-a7dVtiQ",
+      title: "8 hours of uninterrupted rain ambience"
     }
   ];
 

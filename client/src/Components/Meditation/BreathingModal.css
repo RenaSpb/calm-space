@@ -21,6 +21,12 @@
   background-color: rgba(249, 244, 238);
 }
 
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .close-button {
   position: absolute;
   top: 8px;

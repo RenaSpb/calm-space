@@ -83,7 +83,7 @@ export default function TopBar({ setActivePage, activePage, bgPlaying, toggleBgM
         <span className="button-label">Chat</span>
       </button>
       <button
-        className="topbar-button"
+        className="topbar-button-sound"
         onClick={toggleBgMusic}
         title={
           bgPlaying ? "Turn off background music" : "Turn on background music"

@@ -2,7 +2,7 @@ import { useState } from "react";
 import BreathingModal from "./BreathingModal";
 import "./MeditationPage.css";
 
-export default function MeditationPage() {
+export default function MeditationPage({bgPlaying, toggleBgMusic}) {
   const [selectedBreathing, setSelectedBreathing] = useState(null);
 
   const handleOpen = (type) => {
@@ -81,6 +81,8 @@ export default function MeditationPage() {
         <BreathingModal
           breathingType={selectedBreathing}
           onClose={handleClose}
+          toggleBgMusic={toggleBgMusic} 
+          bgPlaying={bgPlaying}
         />
       )}
     </div>
