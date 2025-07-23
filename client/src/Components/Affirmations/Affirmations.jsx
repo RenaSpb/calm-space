@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "./Affirmations.css";
 
-const images = Array.from({ length: 10 }, (_, i) => `/img/af${i + 1}.png`);
+const images = Array.from({ length: 10 }, (_, i) => `/img/af${i + 1}.jpg`);
 
 export default function AffirmationSlider() {
   const [current, setCurrent] = useState(0);
