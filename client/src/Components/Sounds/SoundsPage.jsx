@@ -184,45 +184,46 @@ function SoundPlayer({
   };
 
   return (
-  <div className="sound-item">
-    <div
-      className="sound-bg"
-      style={{ backgroundImage: `url(${image})` }}
-    ></div>
+    <div className="page-fade">
+      <div className="sound-item">
+        <div
+          className="sound-bg"
+          style={{ backgroundImage: `url(${image})` }}
+        ></div>
 
-    <div className="sound-overlay">
-      <p>{title}</p>
+        <div className="sound-overlay">
+          <p>{title}</p>
 
-      <button
-        onClick={togglePlay}
-        className="sound-button"
-        aria-label={isPlaying ? "Pause" : "Play"}
-      >
-        {isPlaying ? (
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <rect x="5" y="4" width="4" height="16" />
-            <rect x="15" y="4" width="4" height="16" />
-          </svg>
-        ) : (
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <polygon points="6,4 20,12 6,20" />
-          </svg>
-        )}
-      </button>
+          <button
+            onClick={togglePlay}
+            className="sound-button"
+            aria-label={isPlaying ? "Pause" : "Play"}
+          >
+            {isPlaying ? (
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <rect x="5" y="4" width="4" height="16" />
+                <rect x="15" y="4" width="4" height="16" />
+              </svg>
+            ) : (
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <polygon points="6,4 20,12 6,20" />
+              </svg>
+            )}
+          </button>
 
-      <input
-        type="range"
-        min="0"
-        max={duration}
-        step="0.1"
-        value={currentTime}
-        onChange={handleSeek}
-        className="progress-bar"
-      />
+          <input
+            type="range"
+            min="0"
+            max={duration}
+            step="0.1"
+            value={currentTime}
+            onChange={handleSeek}
+            className="progress-bar"
+          />
 
-      <audio ref={audioRef} src={src} loop={loop} />
+          <audio ref={audioRef} src={src} loop={loop} />
+        </div>
+      </div>
     </div>
-  </div>
-);
-
+  );
 }

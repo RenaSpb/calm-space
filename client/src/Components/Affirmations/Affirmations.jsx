@@ -24,15 +24,25 @@ export default function AffirmationSlider() {
   }, [current]);
 
   return (
-    <div className="slider-container">
-      <img
-        src={images[current]}
-        alt={`Affirmation ${current + 1}`}
-        className={`slider-image ${fadeClass}`}
-      />
-      <button onClick={showRandom} className="random-button" aria-label="New affirmation">
-        <img src="/icons/refresh.png" alt="Refresh icon" className="refresh-icon" />
-      </button>
+    <div>
+      <div className="slider-container">
+        <img
+          src={images[current]}
+          alt={`Affirmation ${current + 1}`}
+          className={`slider-image ${fadeClass}`}
+        />
+        <button
+          onClick={showRandom}
+          className="random-button"
+          aria-label="New affirmation"
+        >
+          <img
+            src="/icons/refresh.png"
+            alt="Refresh icon"
+            className="refresh-icon"
+          />
+        </button>
+      </div>
     </div>
   );
 }

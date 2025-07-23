@@ -44,18 +44,6 @@ export default function TopBar({ setActivePage, activePage, bgPlaying, toggleBgM
       </button>
 
       <button
-        className={`topbar-button ${activePage === "sounds" ? "active" : ""}`}
-        onClick={() => setActivePage("sounds")}
-      >
-        <img
-          src="/icons/music.png"
-          alt="Sounds icon"
-          style={{ width: "32px", height: "32px" }}
-        />
-        <span className="button-label">Sounds</span>
-      </button>
-
-      <button
         className={`topbar-button ${
           activePage === "affirmations" ? "active" : ""
         }`}
@@ -67,6 +55,18 @@ export default function TopBar({ setActivePage, activePage, bgPlaying, toggleBgM
           style={{ width: "32px", height: "32px" }}
         />
         <span className="button-label">Affirmations</span>
+      </button>
+
+      <button
+        className={`topbar-button ${activePage === "sounds" ? "active" : ""}`}
+        onClick={() => setActivePage("sounds")}
+      >
+        <img
+          src="/icons/music.png"
+          alt="Sounds icon"
+          style={{ width: "32px", height: "32px" }}
+        />
+        <span className="button-label">Sounds</span>
       </button>
 
       <button

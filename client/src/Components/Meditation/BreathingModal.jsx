@@ -1,4 +1,3 @@
-// BreathingModal.jsx
 import ReactDOM from "react-dom";
 import BoxBreathing from "./animations/BoxBreathing";
 import FourSevenEight from "./animations/FourSevenEight";

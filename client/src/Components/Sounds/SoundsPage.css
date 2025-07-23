@@ -10,9 +10,10 @@
 
 .sound-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 1.5rem;
   margin-top: 2rem;
+  justify-content: center;
 }
 
 .sound-bg {
@@ -29,12 +30,12 @@
 
 .sound-item {
   position: relative;
-  padding: 0.5rem;
+  padding: 0.3rem;
   border-radius: 12px;
   overflow: hidden;
   background-size: cover;
   background-position: center;
-  height: 120px;
+  height: 90px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   transition: box-shadow 0.3s ease, transform 0.2s ease;
   cursor: pointer;
@@ -50,17 +51,17 @@
 
 .sound-overlay {
   background-color: transparent; 
-  padding: 0.5rem;
-  backdrop-filter: blur(0.5px);
+  padding: 0.1rem;
+  backdrop-filter: blur(0.01px);
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: 0.5rem;
+  gap: 0.1rem;
 }
 
 .sound-item p {
-  margin-bottom: 0.5rem;
+  margin: 0;
   font-weight: 600;
   color: #ffffff;
   font-size: 1rem;
@@ -72,8 +73,8 @@
   color: #2c2b29;
   border: none;
   border-radius: 50%;
-  width: 36px;
-  height: 36px;
+  width: 30px;
+  height: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -100,7 +101,7 @@
   margin-top: 4px;
   appearance: none;
   height: 4px;
-  background: #ddd;
+  background: #dddddd;
   border-radius: 4px;
   outline: none;
 }
@@ -109,7 +110,7 @@
   appearance: none;
   width: 12px;
   height: 12px;
-  background: #2c2b29;
+  background: #d2d0cb;
   border-radius: 50%;
   cursor: pointer;
 }

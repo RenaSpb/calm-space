@@ -48,66 +48,68 @@ export default function ChatHelper() {
   };
 
   return (
-    <div className="chat-helper">
-      <div className="chat-body">
-        <div className="chat-sidebar">
-          <div className="role-selector">
-            <label>
-              <input
-                type="radio"
-                value="friend"
-                checked={roleType === "friend"}
-                onChange={(e) => setRoleType(e.target.value)}
-              />
-              Friendly Mode
-            </label>
-            <label>
-              <input
-                type="radio"
-                value="therapist"
-                checked={roleType === "therapist"}
-                onChange={(e) => setRoleType(e.target.value)}
-              />
-              Therapeutic Style
-            </label>
+    <div className="page-fade">
+      <div className="chat-helper">
+        <div className="chat-body">
+          <div className="chat-sidebar">
+            <div className="role-selector">
+              <label>
+                <input
+                  type="radio"
+                  value="friend"
+                  checked={roleType === "friend"}
+                  onChange={(e) => setRoleType(e.target.value)}
+                />
+                Friendly Mode
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  value="therapist"
+                  checked={roleType === "therapist"}
+                  onChange={(e) => setRoleType(e.target.value)}
+                />
+                Therapeutic Style
+              </label>
+            </div>
+
+            <div className="chat-controls">
+              <button className="clear-button" onClick={() => setMessages([])}>
+                Clear Chat
+              </button>
+            </div>
           </div>
 
-          <div className="chat-controls">
-            <button className="clear-button" onClick={() => setMessages([])}>
-              Clear Chat
-            </button>
-          </div>
-        </div>
+          <div className="chat-main">
+            <div className="messages">
+              {messages.map((m, idx) => (
+                <div
+                  key={idx}
+                  className={m.role === "user" ? "user-message" : "ai-message"}
+                >
+                  {m.content}
+                </div>
+              ))}
+            </div>
 
-        <div className="chat-main">
-          <div className="messages">
-            {messages.map((m, idx) => (
-              <div
-                key={idx}
-                className={m.role === "user" ? "user-message" : "ai-message"}
+            <div className="input-area">
+              <input
+                type="text"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") handleSend();
+                }}
+                placeholder="Type your message..."
+              />
+              <button
+                onClick={handleSend}
+                className="send-button"
+                aria-label="Send message"
               >
-                {m.content}
-              </div>
-            ))}
-          </div>
-
-          <div className="input-area">
-            <input
-              type="text"
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter") handleSend();
-              }}
-              placeholder="Type your message..."
-            />
-            <button
-              onClick={handleSend}
-              className="send-button"
-              aria-label="Send message"
-            >
-              <img src="/icons/send.png" alt="Send" className="send-icon" />
-            </button>
+                <img src="/icons/send.png" alt="Send" className="send-icon" />
+              </button>
+            </div>
           </div>
         </div>
       </div>
