@@ -19,7 +19,7 @@ export default function AffirmationSlider() {
   useEffect(() => {
     const timeout = setTimeout(() => {
       setFadeClass("");
-    }, 300);
+    }, 1000);
     return () => clearTimeout(timeout);
   }, [current]);
 
