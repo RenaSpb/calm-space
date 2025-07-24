@@ -4,15 +4,13 @@ import "./Affirmations.css";
 const images = Array.from({ length: 10 }, (_, i) => `/img/af${i + 1}.jpg`);
 
 export default function AffirmationSlider() {
-  const [current, setCurrent] = useState(0);
+  const [current, setCurrent] = useState(() =>
+    Math.floor(Math.random() * images.length)
+  );
   const [fadeClass, setFadeClass] = useState("fade-in");
 
-  const showRandom = () => {
-    let newIndex;
-    do {
-      newIndex = Math.floor(Math.random() * images.length);
-    } while (newIndex === current);
-    setCurrent(newIndex);
+  const showNext = () => {
+    setCurrent((prev) => (prev + 1) % images.length);
     setFadeClass("fade-in");
   };
 
@@ -32,13 +30,13 @@ export default function AffirmationSlider() {
           className={`slider-image ${fadeClass}`}
         />
         <button
-          onClick={showRandom}
+          onClick={showNext}
           className="random-button"
-          aria-label="New affirmation"
+          aria-label="Next affirmation"
         >
           <img
             src="/icons/refresh.png"
-            alt="Refresh icon"
+            alt="Next icon"
             className="refresh-icon"
           />
         </button>
