@@ -148,4 +148,8 @@ html, body {
     width: 90%;
     grid-template-columns: 1fr;
   }
+  
+  .meditation-page button {
+    color: #000000; 
+}
 }
