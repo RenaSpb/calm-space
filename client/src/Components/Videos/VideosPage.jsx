@@ -40,7 +40,7 @@ export default function VideosPage() {
     },
     {
       id: "J4d-a7dVtiQ",
-      title: "8 hours of uninterrupted rain ambience",
+      title: "8 Hours of Uninterrupted Rain Ambience",
     },
   ];
 
