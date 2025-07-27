@@ -12,7 +12,7 @@ export default function BreathingModal({
   toggleBgMusic,
   bgPlaying,
 }) {
-  const [countdown, setCountdown] = useState(5);
+  const [countdown, setCountdown] = useState(3);
   const [showAnimation, setShowAnimation] = useState(false);
 
   useEffect(() => {
@@ -20,7 +20,7 @@ export default function BreathingModal({
       const timer = setTimeout(() => setCountdown((prev) => prev - 1), 1000);
       return () => clearTimeout(timer);
     } else {
-      const timer = setTimeout(() => setShowAnimation(true), 500); // небольшая пауза
+      const timer = setTimeout(() => setShowAnimation(true), 500); 
       return () => clearTimeout(timer);
     }
   }, [countdown]);

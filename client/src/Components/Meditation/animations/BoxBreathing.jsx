@@ -5,17 +5,17 @@ import { motion, useAnimation } from "framer-motion";
 import "./BoxBreathing.css";
 
 const phases = ["Inhale", "Hold", "Exhale", "Hold"];
-const durations = [4, 4, 4, 4]; 
+const durations = [4, 4, 4, 4];
 
 export default function BoxBreathing() {
-  const controlTop    = useAnimation();
-  const controlRight  = useAnimation();
+  const controlTop = useAnimation();
+  const controlRight = useAnimation();
   const controlBottom = useAnimation();
-  const controlLeft   = useAnimation();
+  const controlLeft = useAnimation();
   const controls = [controlTop, controlRight, controlBottom, controlLeft];
 
   const [secondsLeft, setSecondsLeft] = useState(0);
-  const [phaseName, setPhaseName]     = useState("");
+  const [phaseName, setPhaseName] = useState("");
 
   useEffect(() => {
     const id = setInterval(() => {
@@ -63,27 +63,47 @@ export default function BoxBreathing() {
   return (
     <div className="box-breathing-wrapper">
       <svg viewBox="0 0 200 200" className="box-breathing-svg">
+        <circle cx="50" cy="50" r="2" fill="lightpink" />
+        <circle cx="150" cy="50" r="2" fill="lightpink" />
+        <circle cx="150" cy="150" r="2" fill="lightpink" />
+        <circle cx="50" cy="150" r="2" fill="lightpink" />
         <motion.line
-          x1="50" y1="50" x2="150" y2="50"
-          stroke="lightpink" strokeWidth="4"
+          x1="50"
+          y1="50"
+          x2="150"
+          y2="50"
+          stroke="lightpink"
+          strokeWidth="4"
           initial={{ pathLength: 0 }}
           animate={controlTop}
         />
         <motion.line
-          x1="150" y1="50" x2="150" y2="150"
-          stroke="lightpink" strokeWidth="4"
+          x1="150"
+          y1="50"
+          x2="150"
+          y2="150"
+          stroke="lightpink"
+          strokeWidth="4"
           initial={{ pathLength: 0 }}
           animate={controlRight}
         />
         <motion.line
-          x1="150" y1="150" x2="50" y2="150"
-          stroke="lightpink" strokeWidth="4"
+          x1="150"
+          y1="150"
+          x2="50"
+          y2="150"
+          stroke="lightpink"
+          strokeWidth="4"
           initial={{ pathLength: 0 }}
           animate={controlBottom}
         />
         <motion.line
-          x1="50" y1="150" x2="50" y2="50"
-          stroke="lightpink" strokeWidth="4"
+          x1="50"
+          y1="150"
+          x2="50"
+          y2="50"
+          stroke="lightpink"
+          strokeWidth="4"
           initial={{ pathLength: 0 }}
           animate={controlLeft}
         />

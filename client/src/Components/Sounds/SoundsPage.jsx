@@ -125,8 +125,6 @@ function SoundPlayer({
 }) {
   const audioRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [currentTime, setCurrentTime] = useState(0);
-  const [duration, setDuration] = useState(0);
 
   const togglePlay = () => {
     const audio = audioRef.current;
@@ -157,72 +155,63 @@ function SoundPlayer({
   };
 
   useEffect(() => {
+    if (activeAudio !== audioRef.current) {
+      setIsPlaying(false);
+    }
+  }, [activeAudio]);
+
+  useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
 
-    const updateTime = () => setCurrentTime(audio.currentTime);
-    const setAudioDuration = () => setDuration(audio.duration);
     const handlePause = () => setIsPlaying(false);
     const handleEnded = () => setIsPlaying(false);
 
-    audio.addEventListener("timeupdate", updateTime);
-    audio.addEventListener("loadedmetadata", setAudioDuration);
     audio.addEventListener("pause", handlePause);
     audio.addEventListener("ended", handleEnded);
 
     return () => {
-      audio.removeEventListener("timeupdate", updateTime);
-      audio.removeEventListener("loadedmetadata", setAudioDuration);
       audio.removeEventListener("pause", handlePause);
       audio.removeEventListener("ended", handleEnded);
     };
   }, []);
 
-  const handleSeek = (e) => {
-    const audio = audioRef.current;
-    audio.currentTime = parseFloat(e.target.value);
-  };
-
   return (
-    <div className="page-fade">
-      <div className="sound-item">
-        <div
-          className="sound-bg"
-          style={{ backgroundImage: `url(${image})` }}
-        ></div>
+    <div className="sound-item">
+      <img src={image} alt={title} className="sound-thumb" />
 
-        <div className="sound-overlay">
-          <p>{title}</p>
+      <div className="sound-info">
+        <p className="sound-title">{title}</p>
 
-          <button
-            onClick={togglePlay}
-            className="sound-button"
-            aria-label={isPlaying ? "Pause" : "Play"}
-          >
-            {isPlaying ? (
-              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <rect x="5" y="4" width="4" height="16" />
-                <rect x="15" y="4" width="4" height="16" />
-              </svg>
-            ) : (
-              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <polygon points="6,4 20,12 6,20" />
-              </svg>
-            )}
-          </button>
+        <div className="sound-visualisation">
+          <div className="sound-button-wrapper">
+            <button
+              onClick={togglePlay}
+              className="sound-button"
+              aria-label={isPlaying ? "Pause" : "Play"}
+            >
+              {isPlaying ? (
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="5" y="4" width="4" height="16" />
+                  <rect x="15" y="4" width="4" height="16" />
+                </svg>
+              ) : (
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <polygon points="6,4 20,12 6,20" />
+                </svg>
+              )}
+            </button>
+          </div>
 
-          <input
-            type="range"
-            min="0"
-            max={duration}
-            step="0.1"
-            value={currentTime}
-            onChange={handleSeek}
-            className="progress-bar"
-          />
-
-          <audio ref={audioRef} src={src} loop={loop} />
+          {isPlaying && (
+            <div className="sound-wave-animated">
+              {Array.from({ length: 8 }).map((_, i) => (
+                <span key={i} style={{ animationDelay: `${i * 0.2}s` }} />
+              ))}
+            </div>
+          )}
         </div>
+        <audio ref={audioRef} src={src} loop={loop} />
       </div>
     </div>
   );
