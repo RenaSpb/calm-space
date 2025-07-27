@@ -11,7 +11,7 @@ const sounds = [
   },
   {
     id: 2,
-    title: "Walking Through Forest",
+    title: "Into the Woods",
     src: "/sounds/Walking Through Forest.mp3",
     image: "/img/sound/2.jpg",
     loop: true,
