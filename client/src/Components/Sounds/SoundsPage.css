@@ -11,7 +11,7 @@
 .sound-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.5rem;
+  gap: 1rem;
   margin-top: 2rem;
   justify-content: center;
 }
@@ -23,8 +23,9 @@
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   transition: box-shadow 0.3s ease, transform 0.2s ease;
-  background-color: #f5f5f5;
+  background-color: rgba(249, 244, 238, 0.5);
   gap: 1rem;
+  ;
 }
 
 .sound-item:hover {
@@ -33,10 +34,10 @@
 }
 
 .sound-thumb {
-  width: 80px;
-  height: 80px;
+  height: 70px;
   object-fit: cover;
   border-radius: 10px;
+  opacity: 0.8;
 }
 
 .sound-info {
@@ -50,7 +51,7 @@
 .sound-title {
   margin: 0;
   font-weight: 600;
-  color: #2c2b29;
+  color: #605e5b;
   font-size: 1rem;
   text-align: center;
 }
@@ -104,7 +105,7 @@
 
 .sound-wave-animated {
   position: absolute;
-  left: 70%;
+  left: 60%;
   margin-left: 8px;
   display: flex;
   align-items: flex-end;

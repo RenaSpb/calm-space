@@ -1,8 +1,8 @@
 .topbar {
   display: flex;
-  flex-wrap: nowrap;
   justify-content: center;
-  gap: 2rem;
+  align-items: center;
+  gap: clamp(0.4rem, 2vw, 2rem);
   background-color: #f5f1ed;
   border-bottom: 1px solid #ddd;
   position: sticky;
@@ -13,64 +13,45 @@
 .topbar-button {
   background: none;
   border: none;
-  font-size: 1rem;
+  font-size: clamp(0.7rem, 2vw, 1rem);
   cursor: pointer;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
+.topbar-button img {
+  width: clamp(20px, 5vw, 32px);
+  height: clamp(20px, 5vw, 32px);
+}
+
 .topbar-button-sound {
   background: none;
   border: none;
   align-items: center;
-}
-
-
-.topbar-button:hover {
-  text-decoration: none;
-}
-
-.topbar-button.active {
-  font-weight: 800;
-}
-
-.topbar-button:focus {
-  outline: none;
-}
-
-@media (max-width: 840px) {
-  .topbar {
-    gap: 0.5rem;
-  }
-
-  .topbar-button, .topbar-button-sound {
-    padding: 1rem 1rem;
-    font-size: 0.9rem;
-  }
-
-  .topbar-button img {
-    width: 24px;
-    height: 24px;
-  }
+  padding: clamp(0.3rem, 1.5vw, 0.8rem) clamp(0.5rem, 3vw, 1.5rem);
 }
 
 @media (max-width: 650px) {
   .topbar {
-    gap: 0.2rem;
-  }
-
-  .topbar-button, .topbar-button-sound  {
-    font-size: 0.7rem;
-    padding: 1rem 0.5rem;
+    gap: 0.2rem; 
   }
 
   .topbar-button img {
-    width: 20px;
-    height: 20px;
+    width: 18px;  
+    height: 18px;
+  }
+
+  .topbar-button {
+    font-size: 0.6rem; 
+  }
+
+  .topbar-button-sound {
+    padding: 0.3rem 0.5rem; 
   }
 
   .button-label {
     display: none;
   }
 }
+

@@ -32,7 +32,7 @@ html, body {
   padding: 1rem;
   border-radius: 12px;
   font-size: 18px;
-  gap: 0.5rem;
+  gap: 1.5rem;
   text-align: center;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   font-family: 'Quicksand';
@@ -71,6 +71,7 @@ html, body {
   gap: 4rem;
   justify-content: center;
   align-items: stretch;
+  margin-top: 1rem;
 }
 
 .left-block {
