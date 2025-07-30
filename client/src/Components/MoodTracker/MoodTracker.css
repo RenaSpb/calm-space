@@ -39,13 +39,15 @@
 .mood-options {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: 0.5rem;
   width: 100%; 
 }
 
 .mood-btn {
-  width: 100%; 
-  background-color: #dad5cd;
+  width: 50%; 
+  background-color: #e8e7e4;
   border: none;
   padding: 0.75rem;
   border-radius: 6px;
@@ -57,15 +59,22 @@
   gap: 0.5rem;
   color: #2c2b29;
   box-sizing: border-box; 
-  transition: background-color 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+  transition: all 0.2s ease;
+}
+
+.clear-button:hover {
+  background-color: #c6bcbc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+  transform: translateY(-1px); 
 }
 
 .mood-btn:hover {
-  background-color: #d9dbce;
+  background-color: #ded4d4;
 }
 
 .mood-btn.selected {
-  background-color: #cfc5c5;
+  background-color: #d7e3d4;
 }
 
 .note-section {
@@ -76,12 +85,14 @@
   box-sizing: border-box;
   width: 100%; 
   display: flex;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
   gap: 0.75rem;
 }
 
 .note-section textarea {
-  width: 100%;
+  width: 70%;
   min-height: 120px;
   padding: 0.5rem;
   border-radius: 6px;
@@ -94,19 +105,23 @@
 }
 
 .save-btn {
-  width: 100%; 
-  padding: 0.75rem;
-  background-color: #dad5cd;
+  background: none;
   border: none;
-  border-radius: 6px;
   cursor: pointer;
-  font-size: 1rem;
-  box-sizing: border-box;
-  transition: background-color 0.3s ease;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.save-btn:hover {
-  background-color: #cfc5c5;
+.save-icon {
+  width: 40px;
+  height: 40px;
+  transition: transform 0.2s ease;
+}
+
+.save-btn:hover .save-icon {
+  transform: scale(1.1);
 }
 
 .mood-chart {
@@ -152,4 +167,14 @@
   width: 28px;
   height: 28px;
   object-fit: contain;
+}
+
+@media (max-width: 1168px) {
+  .dashboard {
+    flex-direction: column;
+  }
+
+  .panel {
+    width: 100%;
+  }
 }

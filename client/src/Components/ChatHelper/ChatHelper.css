@@ -118,7 +118,7 @@
 }
 
 .clear-button:hover {
-  background-color: #c6bcbc;
+  background-color: #ded4d4;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
   transform: translateY(-1px); 
 }

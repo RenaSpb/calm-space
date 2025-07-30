@@ -80,7 +80,9 @@ const MoodTracker = () => {
             {moods.map((mood) => (
               <button
                 key={mood.id}
-                className={`mood-btn ${selectedMood === mood.id ? "selected" : ""}`}
+                className={`mood-btn ${
+                  selectedMood === mood.id ? "selected" : ""
+                }`}
                 onClick={() => handleMoodClick(mood.id)}
               >
                 <span className="icon">{mood.icon}</span>
@@ -96,7 +98,13 @@ const MoodTracker = () => {
                 value={note}
                 onChange={(e) => setNote(e.target.value)}
               />
-              <button className="save-btn" onClick={handleSave}>Save</button>
+              <button
+                className="save-btn"
+                onClick={handleSave}
+                aria-label="Save mood"
+              >
+                <img src="/icons/done.png" alt="Save" className="save-icon" />
+              </button>
             </div>
           )}
         </div>
@@ -128,7 +136,9 @@ const MoodTracker = () => {
               return (
                 <li key={index}>
                   <span>{entry.date}</span> —{" "}
-                  <strong>{moodObj.icon} {moodObj.label}</strong>
+                  <strong>
+                    {moodObj.icon} {moodObj.label}
+                  </strong>
                   {entry.note && <p className="note">"{entry.note}"</p>}
                 </li>
               );
