@@ -44,6 +44,12 @@
 
 .close-button:hover {
   color: #000;
+  transform: rotate(90deg);
+  transition: transform 0.3s ease, color 0.2s ease;
+}
+
+.close-button:hover {
+  color: #000;
 }
 
 .modal-content h3 {
