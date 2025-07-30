@@ -1,33 +1,63 @@
+.dashboard {
+  display: flex;
+  gap: 2rem;
+  margin-top: 1rem;
+}
 
-.mood-tracker {
-  max-width: 600px;
-  margin: 2rem auto;
-  padding: 1rem;
+.panel {
+  flex: 1;
   background-color: rgba(249, 244, 238, 0.5);
-  border-radius: 10px;
   border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  min-height: 350px;
+  box-sizing: border-box;
+}
+
+.panel-title,
+.panel-left > h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #2c2b29;
+}
+
+.panel-left {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch; 
 }
 
 .mood-options {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: 0.5rem;
-  justify-content: center;
-  margin-bottom: 1rem;
+  width: 100%; 
 }
 
 .mood-btn {
+  width: 100%; 
   background-color: #dad5cd;
   border: none;
-  padding: 0.5rem 1rem;
+  padding: 0.75rem;
   border-radius: 6px;
   cursor: pointer;
-  font-size: 0.9rem;
+  font-size: 1rem;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
+  color: #2c2b29;
+  box-sizing: border-box; 
   transition: background-color 0.3s ease;
-  color: #2c2b29; 
 }
 
 .mood-btn:hover {
@@ -40,55 +70,60 @@
 
 .note-section {
   margin-top: 1rem;
-  padding: 1rem; 
   background-color: rgba(249, 244, 238, 0.5);
   border-radius: 10px;
+  padding: 1rem;
+  box-sizing: border-box;
+  width: 100%; 
   display: flex;
   flex-direction: column;
-  gap: 0.75rem; 
-  max-width: 600px; 
-  margin-left: auto; 
-  margin-right: auto;
+  gap: 0.75rem;
 }
 
 .note-section textarea {
   width: 100%;
+  min-height: 120px;
   padding: 0.5rem;
-  font-size: 1rem;
+  border-radius: 6px;
   border: 1px solid #ddd;
-  border-radius: 6px;
-  resize: vertical;
   box-sizing: border-box;
-  min-height: 120px; 
-}
-
-.note-section .save-btn {
-  align-self: flex-start; 
-  background-color: #dad5cd;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 0.9rem;
-  transition: background-color 0.3s ease;
-}
-
-.note-section .save-btn:hover {
-  background-color: #cfc5c5;
+  font-size: 1rem;
+  font-family: inherit;
+  color: #2c2b29;
+  resize: vertical;
 }
 
 .save-btn {
+  width: 100%; 
+  padding: 0.75rem;
   background-color: #dad5cd;
   border: none;
-  padding: 0.75rem 1.5rem;  
-  border-radius: 8px;
+  border-radius: 6px;
   cursor: pointer;
-  font-size: 1.1rem;      
-  align-self: flex-end;
+  font-size: 1rem;
+  box-sizing: border-box;
+  transition: background-color 0.3s ease;
 }
 
 .save-btn:hover {
-  background-color: #d9dbce;
+  background-color: #cfc5c5;
+}
+
+.mood-chart {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.chart-title {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #2c2b29;
+  text-align: center;
+  margin-bottom: 1rem;
 }
 
 .mood-history {
@@ -113,61 +148,8 @@
   color: #444;
 }
 
-.mood-tracker,
-.mood-tracker textarea {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-              Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  font-size: 1rem; 
-  color: #2c2b29; 
-}
-
-
-.mood-tracker textarea::placeholder {
-  font-family: inherit; 
-  font-size: 1rem;
-  color: #6b6b6b; 
-  font-style: normal;
-  opacity: 1; 
-}
-
-.mood-tracker h2 {
-  text-align: center;
-  margin-bottom: 1rem; 
-}
-
-
-
-
-
-
-
-.mood-btn {
-  background-color: #dad5cd;
-  border: none;
-  padding: 0.5rem 0.75rem;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 0.9rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  transition: background-color 0.3s ease;
-  color: #2c2b29;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
-}
-
-.mood-btn:hover {
-  background-color: #d9dbce;
-}
-
-.mood-btn.selected {
-  background-color: #cfc5c5;
-}
-
 .mood-icon {
   width: 28px;
   height: 28px;
   object-fit: contain;
 }
-
-
