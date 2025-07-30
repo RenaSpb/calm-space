@@ -205,7 +205,7 @@ function SoundPlayer({
 
           {isPlaying && (
             <div className="sound-wave-animated">
-              {Array.from({ length: 8 }).map((_, i) => (
+              {Array.from({ length: 6 }).map((_, i) => (
                 <span key={i} style={{ animationDelay: `${i * 0.2}s` }} />
               ))}
             </div>
