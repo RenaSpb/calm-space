@@ -8,15 +8,17 @@ export default function AffirmationSlider() {
     Math.floor(Math.random() * images.length)
   );
   const [fadeClass, setFadeClass] = useState("fade-in");
+  const [isLoaded, setIsLoaded] = useState(false);
 
   const showNext = () => {
+    setIsLoaded(false); 
     setCurrent((prev) => (prev + 1) % images.length);
     setFadeClass("fade-in");
   };
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      setFadeClass("");
+      setFadeClass(""); 
     }, 1000);
     return () => clearTimeout(timeout);
   }, [current]);
@@ -27,7 +29,8 @@ export default function AffirmationSlider() {
         <img
           src={images[current]}
           alt={`Affirmation ${current + 1}`}
-          className={`slider-image ${fadeClass}`}
+          onLoad={() => setIsLoaded(true)}
+          className={`slider-image ${isLoaded ? fadeClass : ""}`}
         />
         <button
           onClick={showNext}
