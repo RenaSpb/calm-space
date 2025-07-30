@@ -77,18 +77,30 @@ const MoodTracker = () => {
         <div className="panel panel-left">
           <h2 className="panel-title">How are you feeling today?</h2>
           <div className="mood-options">
-            {moods.map((mood) => (
-              <button
-                key={mood.id}
-                className={`mood-btn ${
-                  selectedMood === mood.id ? "selected" : ""
-                }`}
-                onClick={() => handleMoodClick(mood.id)}
-              >
-                <span className="icon">{mood.icon}</span>
-                <span>{mood.label}</span>
-              </button>
-            ))}
+            <div className="mood-row">
+              {moods.slice(0, 3).map((mood) => (
+                <button
+                  key={mood.id}
+                  className={`mood-btn ${selectedMood === mood.id ? "selected" : ""}`}
+                  onClick={() => handleMoodClick(mood.id)}
+                >
+                  <span>{mood.icon}</span>
+                  <span>{mood.label}</span>
+                </button>
+              ))}
+            </div>
+            <div className="mood-row center-row">
+              {moods.slice(3).map((mood) => (
+                <button
+                  key={mood.id}
+                  className={`mood-btn ${selectedMood === mood.id ? "selected" : ""}`}
+                  onClick={() => handleMoodClick(mood.id)}
+                >
+                  <span>{mood.icon}</span>
+                  <span>{mood.label}</span>
+                </button>
+              ))}
+            </div>
           </div>
 
           {selectedMood && (

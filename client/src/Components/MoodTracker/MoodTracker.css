@@ -39,42 +39,49 @@
 .mood-options {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  gap: 1rem;
   align-items: center;
-  gap: 0.5rem;
-  width: 100%; 
+}
+
+.mood-row {
+  display: flex;
+  gap: 1rem;
+}
+
+.center-row {
+  justify-content: center;
 }
 
 .mood-btn {
-  width: 50%; 
-  background-color: #e8e7e4;
+  width: 100px;
+  height: 60px;
+  background-color: #f5e5d5;
   border: none;
-  padding: 0.75rem;
-  border-radius: 6px;
+  border-radius: 8px;
   cursor: pointer;
   font-size: 1rem;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  color: #2c2b29;
-  box-sizing: border-box; 
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+  gap: 0.25rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: all 0.2s ease;
+  text-align: center;
 }
 
 .clear-button:hover {
-  background-color: #c6bcbc;
+  background-color: #e2cebb;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
   transform: translateY(-1px); 
 }
 
 .mood-btn:hover {
-  background-color: #ded4d4;
+  background-color: #ead3bf;
 }
 
 .mood-btn.selected {
-  background-color: #d7e3d4;
+  background-color: #cadbc7;
 }
 
 .note-section {

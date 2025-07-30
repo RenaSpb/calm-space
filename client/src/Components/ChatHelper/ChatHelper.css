@@ -38,7 +38,7 @@
 .user-message {
   text-align: right;
   margin: 0.5rem 0;
-  background: #d0f0e0;
+  background: #dde8e2;
   padding: 0.5rem;
   border-radius: 8px;
 }
@@ -107,7 +107,7 @@
 }
 
 .clear-button {
-  background-color: #e8e7e4;
+  background-color: #f5e5d5;
   border: none;
   padding: 0.5rem 1rem;
   border-radius: 6px;
@@ -118,7 +118,7 @@
 }
 
 .clear-button:hover {
-  background-color: #ded4d4;
+  background-color: #e2cebb;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
   transform: translateY(-1px); 
 }
