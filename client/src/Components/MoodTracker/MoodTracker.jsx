@@ -123,7 +123,7 @@ const MoodTracker = () => {
               src={moods.find((m) => m.id === selectedMood)?.icon}
               alt={moods.find((m) => m.id === selectedMood)?.label}
               className="mood-icon"
-              />{" "}
+              />&nbsp;
               {moods.find((m) => m.id === selectedMood)?.label}
           </h3>
           <textarea
