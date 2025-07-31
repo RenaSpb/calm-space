@@ -48,6 +48,7 @@ OPENAI_API_KEY=your_openai_api_key
 📌 API Endpoints
 
 1. Chat API
+   
 POST /chat
 Send a message to the AI assistant.
 Body:
@@ -63,13 +64,16 @@ Response:
   "reply": "It’s okay to feel anxious sometimes. Can you tell me what’s been on your mind?"
 }
 
-2. Mood API
+1. Mood API
+   
 POST /mood
+
 Create a mood entry.
 {
   "mood": "Happy",
   "note": "Had a great day!"
 }
+
 Response:
 {
   "message": "Mood saved!",
@@ -77,6 +81,7 @@ Response:
 }
 
 GET /mood
+
 Fetch moods with optional filters.
 Query params: startDate, endDate, type
 GET /mood?startDate=2025-07-01&endDate=2025-07-31&type=Happy
@@ -88,9 +93,11 @@ Update mood entry.
 }
 
 DELETE /mood/:id
+
 Delete a mood by ID.
 
 GET /mood/summary
+
 Fetch mood summary (weekly/monthly).
 GET /mood/summary?period=month
 Response example:
