@@ -204,12 +204,22 @@
   }
 }
 
-@media (max-width: 768px) {
-  .dashboard {
+@media (max-width: 1068px) {
+    .dashboard {
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     gap: 1rem;
   }
 
+    .panel {
+    width: 100%;
+    max-width: 500px;
+  }
+
+}
+
+@media (max-width: 768px) {
   .panel {
     width: 100%;
   }
@@ -217,5 +227,9 @@
   .mood-btn {
   width: 90px;
   height: 50px;
+}
+
+.mood-options {
+  padding-top: 0px;
 }
 }
