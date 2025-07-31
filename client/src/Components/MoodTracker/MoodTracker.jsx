@@ -4,11 +4,11 @@ import MoodChart from "./MoodChart";
 import Modal from "./Modal";
 
 const moods = [
-  { id: "happy", label: "Happy", icon: "/iconsEmoji/005-happy.png" },
-  { id: "sad", label: "Sad", icon: "/iconsEmoji/004-sad.png" },
-  { id: "calm", label: "Calm", icon: "/iconsEmoji/003-angel.png" },
-  { id: "anxious", label: "Anxious", icon: "/iconsEmoji/001-worry.png" },
-  { id: "tired", label: "Tired", icon: "/iconsEmoji/002-sleep.png" },
+  { id: "happy", label: "Happy", icon: "/iconsEmoji/005-happy1.png" },
+  { id: "sad", label: "Sad", icon: "/iconsEmoji/004-sad1.png" },
+  { id: "calm", label: "Calm", icon: "/iconsEmoji/003-angel1.png" },
+  { id: "anxious", label: "Anxious", icon: "/iconsEmoji/001-worry1.png" },
+  { id: "tired", label: "Tired", icon: "/iconsEmoji/002-sleep1.png" },
 ];
 
 const MoodTracker = () => {
