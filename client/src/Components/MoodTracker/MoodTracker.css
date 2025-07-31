@@ -45,7 +45,7 @@
   -webkit-appearance: none;
   width: 100px;
   height: 60px;
-  background-color: #f5e5d5;
+  background-color: #f7e5d4;
   color: #2c2b29;
   border: none;
   border-radius: 10px;
@@ -79,13 +79,11 @@
   justify-content: center;
   align-items: center;
   z-index: 9999;
+  box-sizing: border-box;
 }
 
 .modal {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  position: relative;
   background: #fffaf4;
   padding: 2rem;
   border-radius: 16px;
@@ -93,7 +91,7 @@
   max-width: 500px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
   animation: fadeIn 0.3s ease;
-  position: relative;
+  box-sizing: border-box;
 }
 
 .modal h3 {
@@ -232,4 +230,12 @@
 .mood-options {
   padding-top: 0px;
 }
+
+  .modal {
+    width: 90%;
+    max-width: 300px;
+    padding: 1.2rem;
+  }
 }
+
+

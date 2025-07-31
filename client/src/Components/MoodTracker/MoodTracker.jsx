@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import "./MoodTracker.css";
 import MoodChart from "./MoodChart";
+ import Modal from "./Modal";
 
 const moods = [
   { id: "happy", label: "Happy", icon: "😊" },
@@ -75,7 +76,7 @@ const MoodTracker = () => {
               {moods.slice(0, 3).map((mood) => (
                 <button
                   key={mood.id}
-                  className='mood-btn'
+                  className="mood-btn"
                   onClick={() => handleMoodClick(mood.id)}
                 >
                   <span>{mood.icon}</span>
@@ -87,7 +88,7 @@ const MoodTracker = () => {
               {moods.slice(3).map((mood) => (
                 <button
                   key={mood.id}
-                  className='mood-btn'
+                  className="mood-btn"
                   onClick={() => handleMoodClick(mood.id)}
                 >
                   <span>{mood.icon}</span>
@@ -109,30 +110,29 @@ const MoodTracker = () => {
       </div>
 
       {selectedMood && (
-        <div className="modal-overlay" onClick={() => setSelectedMood(null)}>
-          <div className="modal" onClick={(e) => e.stopPropagation()}>
-            <button
-              className="modal-close-btn"
-              onClick={() => setSelectedMood(null)}
-              aria-label="Close modal"
-            >
-              <img src="/icons/close.png" alt="Close" />
+        <Modal onClose={() => setSelectedMood(null)}>
+          <button
+            className="modal-close-btn"
+            onClick={() => setSelectedMood(null)}
+            aria-label="Close modal"
+          >
+            <img src="/icons/close.png" alt="Close" />
+          </button>
+          <h3>
+            {moods.find((m) => m.id === selectedMood)?.icon}{" "}
+            {moods.find((m) => m.id === selectedMood)?.label}
+          </h3>
+          <textarea
+            placeholder="Hey! Tell me a little bit more, if you want to..."
+            value={note}
+            onChange={(e) => setNote(e.target.value)}
+          />
+          <div className="modal-actions">
+            <button className="save-btn" onClick={handleSave}>
+              <img src="/icons/done.png" alt="Save" className="save-icon" />
             </button>
-            <h3>
-              {moods.find((m) => m.id === selectedMood)?.icon} {moods.find((m) => m.id === selectedMood)?.label}
-            </h3>
-            <textarea
-              placeholder="Hey! Tell me a little bit more, if you want to..."
-              value={note}
-              onChange={(e) => setNote(e.target.value)}
-            />
-            <div className="modal-actions">
-              <button className="save-btn" onClick={handleSave}>
-                <img src="/icons/done.png" alt="Save" className="save-icon" />
-              </button>
-            </div>
           </div>
-        </div>
+        </Modal>
       )}
 
       {history.length > 0 && (
@@ -150,7 +150,10 @@ const MoodTracker = () => {
 
               return (
                 <li key={index}>
-                  <span>{entry.date}</span> — <strong>{moodObj.icon} {moodObj.label}</strong>
+                  <span>{entry.date}</span> —{" "}
+                  <strong>
+                    {moodObj.icon} {moodObj.label}
+                  </strong>
                   {entry.note && <p className="note">"{entry.note}"</p>}
                 </li>
               );
