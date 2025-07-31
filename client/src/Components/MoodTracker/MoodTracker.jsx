@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
 import "./MoodTracker.css";
 import MoodChart from "./MoodChart";
- import Modal from "./Modal";
+import Modal from "./Modal";
 
 const moods = [
-  { id: "happy", label: "Happy", icon: "😊" },
-  { id: "sad", label: "Sad", icon: "😢" },
-  { id: "calm", label: "Calm", icon: "😌" },
-  { id: "anxious", label: "Anxious", icon: "😰" },
-  { id: "tired", label: "Tired", icon: "😴" },
+  { id: "happy", label: "Happy", icon: "/iconsEmoji/005-happy.png" },
+  { id: "sad", label: "Sad", icon: "/iconsEmoji/004-sad.png" },
+  { id: "calm", label: "Calm", icon: "/iconsEmoji/003-angel.png" },
+  { id: "anxious", label: "Anxious", icon: "/iconsEmoji/001-worry.png" },
+  { id: "tired", label: "Tired", icon: "/iconsEmoji/002-sleep.png" },
 ];
 
 const MoodTracker = () => {
@@ -79,7 +79,7 @@ const MoodTracker = () => {
                   className="mood-btn"
                   onClick={() => handleMoodClick(mood.id)}
                 >
-                  <span>{mood.icon}</span>
+                  <img src={mood.icon} alt={mood.label} className="mood-icon" />
                   <span>{mood.label}</span>
                 </button>
               ))}
@@ -91,7 +91,7 @@ const MoodTracker = () => {
                   className="mood-btn"
                   onClick={() => handleMoodClick(mood.id)}
                 >
-                  <span>{mood.icon}</span>
+                  <img src={mood.icon} alt={mood.label} className="mood-icon" />
                   <span>{mood.label}</span>
                 </button>
               ))}
@@ -119,8 +119,12 @@ const MoodTracker = () => {
             <img src="/icons/close.png" alt="Close" />
           </button>
           <h3>
-            {moods.find((m) => m.id === selectedMood)?.icon}{" "}
-            {moods.find((m) => m.id === selectedMood)?.label}
+              <img
+              src={moods.find((m) => m.id === selectedMood)?.icon}
+              alt={moods.find((m) => m.id === selectedMood)?.label}
+              className="mood-icon"
+              />{" "}
+              {moods.find((m) => m.id === selectedMood)?.label}
           </h3>
           <textarea
             placeholder="Hey! Tell me a little bit more, if you want to..."
@@ -152,7 +156,7 @@ const MoodTracker = () => {
                 <li key={index}>
                   <span>{entry.date}</span> —{" "}
                   <strong>
-                    {moodObj.icon} {moodObj.label}
+                    <img src={moodObj.icon} alt={moodObj.label} className="mood-icon" /> {moodObj.label}
                   </strong>
                   {entry.note && <p className="note">"{entry.note}"</p>}
                 </li>
