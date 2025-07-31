@@ -3,9 +3,13 @@ require("dotenv").config();
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
+  ssl: {
+    require: true,       
+    rejectUnauthorized: false 
+  }
 });
 
-const ensureMoodsTable = async () => {
+async function ensureMoodsTable() {
   try {
     await pool.query(`
       CREATE TABLE IF NOT EXISTS moods (
@@ -15,11 +19,11 @@ const ensureMoodsTable = async () => {
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       );
     `);
-    console.log("✅ 'moods' table is ready.");
-  } catch (err) {
-    console.error("❌ Error ensuring moods table:", err);
+    console.log("✅ Moods table ready");
+  } catch (error) {
+    console.error("❌ Error ensuring moods table:", error);
   }
-};
+}
 
 ensureMoodsTable();
 
