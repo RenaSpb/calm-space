@@ -41,9 +41,12 @@
 }
 
 .mood-btn {
+  appearance: none;
+  -webkit-appearance: none;
   width: 100px;
   height: 60px;
   background-color: #f5e5d5;
+  color: #2c2b29;
   border: none;
   border-radius: 10px;
   cursor: pointer;
@@ -54,6 +57,10 @@
   align-items: center;
   transition: all 0.2s ease;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.mood-btn:focus {
+  outline: none;
 }
 
 .mood-btn:hover {
@@ -206,4 +213,9 @@
   .panel {
     width: 100%;
   }
+
+  .mood-btn {
+  width: 90px;
+  height: 50px;
+}
 }
