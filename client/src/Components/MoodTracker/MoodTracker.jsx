@@ -203,10 +203,10 @@ const MoodTracker = () => {
             {summary ? (
               <>
                 <p>
-                  <strong>Top mood:</strong> {summary.topMood || " "}
+                  <strong>Top:</strong> {summary.topMood || " "}
                 </p>
                 <p>
-                  <strong>Avg mood:</strong>{" "}
+                  <strong>Avg:</strong>{" "}
                   {summary.average ? Number(summary.average).toFixed(1) : " "}
                 </p>
                 <p>
