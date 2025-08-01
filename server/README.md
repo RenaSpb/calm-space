@@ -40,21 +40,22 @@ It provides two main features:
 # ⚙️ Installation & Setup
 
 1. Clone the repository
-   git clone <repo-url>
-   cd calm-space-server
+<pre>git clone<repo-url></pre>
+<pre>cd calm-space-server</pre>
 
-2. Install dependencies
-   npm install
+1. Install dependencies
+<pre>npm install</pre>
 
-3. Configure environment variables
+2. Configure environment variables
 Create a .env file in the root directory:
+
 PORT=5000
 DATABASE_URL=postgresql://<username>:<password>@<host>:<port>/<dbname>
 OPENAI_API_KEY=your_openai_api_key
 
-4. Start the server
-   npm start
-   Server will run at: http://localhost:5000
+1. Start the server
+<pre>npm start</pre>
+Server will run at: http://localhost:5000
 
 # 📌 API Endpoints
 
@@ -65,22 +66,23 @@ OPENAI_API_KEY=your_openai_api_key
 Send a message to the AI assistant
 
 Body:
-
+<pre>
 {
   "message": "I'm feeling a bit anxious.",
   "roleType": "therapist"
 }
-
+</pre>
 roleType options:
 
 	•	friend → Friendly, casual tone
 	•	therapist → Gentle, professional tone
 
 Response:
-
+<pre>
 {
   "reply": "It’s okay to feel anxious sometimes. Can you tell me what’s been on your mind?"
 }
+</pre>
 
 ## Mood API
    
@@ -88,17 +90,21 @@ Response:
 
 Create a mood entry.
 
+<pre>
 {
   "mood": "Happy",
   "note": "Had a great day!"
 }
+</pre>
 
 Response:
 
+<pre>
 {
   "message": "Mood saved!",
-  "mood": { "id": 1, "mood": "Happy", "note": "Had a great day!", "created_at": "2025-07-31T13:00:00Z" }
+  "mood": { "id": 1, "mood": "Happy", "note": "Had a great day!",   "created_at": "2025-07-31T13:00:00Z" }
 }
+</pre>
 
 ### GET /mood
 
@@ -111,10 +117,12 @@ PUT /mood/:id
 
 ### Update mood entry
 
+<pre>
 {
   "mood": "Calm",
   "note": "Relaxed after meditation."
 }
+</pre>
 
 ### DELETE /mood/:id
 
@@ -128,10 +136,12 @@ GET /mood/summary?period=month
 
 Response example:
 
+<pre>
 [
   { "period": "2025-07", "avg_mood": 4.2 },
   { "period": "2025-06", "avg_mood": 3.8 }
 ]
+</pre>
 
 # 🛠 Tech Stack
 	•	Node.js + Express – Backend framework
