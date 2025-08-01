@@ -41,8 +41,9 @@ const MoodTracker = () => {
   const handleEditClick = (entry) => {
     setEditingEntry(entry);
     setSelectedMood(
-      moods.find((m) => m.label.toLowerCase() === entry.mood.label.toLowerCase())?.id ||
-      null
+      moods.find(
+        (m) => m.label.toLowerCase() === entry.mood.label.toLowerCase()
+      )?.id || null
     );
     setNote(entry.note || "");
   };
@@ -58,14 +59,13 @@ const MoodTracker = () => {
         Array.isArray(data)
           ? data.map((entry) => ({
               id: entry.id, // make sure to keep id for updates
-              mood:
-                moods.find(
-                  (m) =>
-                    m.label.toLowerCase() === (entry.mood || "").toLowerCase()
-                ) || {
-                  icon: "❓",
-                  label: entry.mood || "Unknown",
-                },
+              mood: moods.find(
+                (m) =>
+                  m.label.toLowerCase() === (entry.mood || "").toLowerCase()
+              ) || {
+                icon: "❓",
+                label: entry.mood || "Unknown",
+              },
               note: entry.note,
               date: entry.created_at ? new Date(entry.created_at) : new Date(0),
             }))
@@ -198,6 +198,25 @@ const MoodTracker = () => {
               ))}
             </div>
           </div>
+          {/* Summary Section */}
+          <div className="mood-summary">
+            {summary ? (
+              <>
+                <p>
+                  <strong>Top mood:</strong> {summary.topMood || " "}
+                </p>
+                <p>
+                  <strong>Avg mood:</strong>{" "}
+                  {summary.average ? Number(summary.average).toFixed(1) : " "}
+                </p>
+                <p>
+                  <strong>Entries:</strong> {summary.totalEntries ?? 0}
+                </p>
+              </>
+            ) : (
+              <p>No summary available yet</p>
+            )}
+          </div>
         </div>
 
         {/* Right Panel - Chart */}
@@ -239,34 +258,15 @@ const MoodTracker = () => {
         </div>
       </div>
 
-      {/* Summary Section */}
-      <div className="mood-summary">
-        <h3>Mood Summary</h3>
-        {summary ? (
-          <>
-            <p>
-              <strong>Most frequent mood:</strong> {summary.topMood || " "}
-            </p>
-            <p>
-              <strong>Average mood:</strong>{" "}
-              {summary.average ? Number(summary.average).toFixed(1) : " "}
-            </p>
-            <p>
-              <strong>Total entries:</strong> {summary.totalEntries ?? 0}
-            </p>
-          </>
-        ) : (
-          <p>No summary available yet</p>
-        )}
-      </div>
-
       {/* Modal for adding or editing mood */}
       {(selectedMood || editingEntry) && (
-        <Modal onClose={() => {
-          setSelectedMood(null);
-          setEditingEntry(null);
-          setNote("");
-        }}>
+        <Modal
+          onClose={() => {
+            setSelectedMood(null);
+            setEditingEntry(null);
+            setNote("");
+          }}
+        >
           <button
             className="modal-close-btn"
             onClick={() => {
@@ -318,7 +318,10 @@ const MoodTracker = () => {
                 </strong>
                 {entry.note && <p className="note">"{entry.note}"</p>}
                 {/* Add edit button for each entry */}
-                <button onClick={() => handleEditClick(entry)} className="edit-btn">
+                <button
+                  onClick={() => handleEditClick(entry)}
+                  className="edit-btn"
+                >
                   Edit
                 </button>
               </li>

@@ -31,7 +31,6 @@
   flex-direction: column;
   gap: 1rem;
   align-items: center;
-  padding-top: 30px
 }
 
 .mood-row {
@@ -45,7 +44,7 @@
   -webkit-appearance: none;
   width: 100px;
   height: 60px;
-  background-color: #f7e5d4;
+  background-color: transparent;
   color: #2c2b29;
   border: none;
   border-radius: 10px;
@@ -56,7 +55,7 @@
   justify-content: center;
   align-items: center;
   transition: all 0.2s ease;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  box-shadow: 1px 1px 3px rgba(1, 1, 1, 0.5);
 }
 
 .mood-btn:focus {
@@ -173,6 +172,10 @@
 
 .mood-history {
   margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .mood-history ul {
@@ -193,6 +196,90 @@
   font-style: italic;
   color: #555;
 }
+
+.mood-summary {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.mood-summary p {
+  background: transparent;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+.mood-icon {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+  background-color: rgba(249, 244, 238, 0.4);
+  padding: 0.5rem 1.5rem;
+  border-radius: 12px;
+  box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.sort-controls,
+.filter-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: system-ui, sans-serif;
+  color: #2c2b29;
+}
+
+.controls label {
+  font-weight: 600;
+}
+
+.controls select {
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background: #fffaf4;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.controls select:hover {
+  border-color: #8a7e6a;
+  box-shadow: 0 0 4px rgba(176, 118, 24, 0.3);
+}
+
+.controls select:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.edit-btn {
+  background-color: #f5e5d5;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+  transition: all 0.2s ease;
+}
+
+.edit-btn:hover {
+  background-color: #e2cebb;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+  transform: translateY(-1px); 
+}
+
 
 @keyframes fadeIn {
   from {
@@ -217,12 +304,11 @@
     width: 100%;
     max-width: 500px;
   }
-
 }
 
 @media (max-width: 768px) {
   .panel {
-    width: 100%;
+  width: 100%;
   }
 
   .mood-btn {
@@ -230,19 +316,24 @@
   height: 50px;
 }
 
+  .controls {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 0.8rem;
+  }
+
+  .sort-controls,
+  .filter-controls {
+    justify-content: center;
+  }
+
 .mood-options {
   padding-top: 0px;
 }
 
-  .modal {
-    width: 90%;
-    max-width: 300px;
-    padding: 1.2rem;
+.modal {
+  width: 90%;
+  max-width: 300px;
+  padding: 1.2rem;
   }
-}
-
-.mood-icon {
-  width: 26px;
-  height: 26px;
-  object-fit: contain;
 }
