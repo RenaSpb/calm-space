@@ -206,7 +206,7 @@ const MoodTracker = () => {
           {filteredAndSortedHistory.length > 0 ? (
             <MoodChart history={filteredAndSortedHistory} />
           ) : (
-            <p>No data yet</p>
+            <p></p>
           )}
         </div>
       </div>
@@ -245,11 +245,11 @@ const MoodTracker = () => {
         {summary ? (
           <>
             <p>
-              <strong>Most frequent mood:</strong> {summary.topMood || "N/A"}
+              <strong>Most frequent mood:</strong> {summary.topMood || " "}
             </p>
             <p>
               <strong>Average mood:</strong>{" "}
-              {summary.average ? Number(summary.average).toFixed(1) : "N/A"}
+              {summary.average ? Number(summary.average).toFixed(1) : " "}
             </p>
             <p>
               <strong>Total entries:</strong> {summary.totalEntries ?? 0}
