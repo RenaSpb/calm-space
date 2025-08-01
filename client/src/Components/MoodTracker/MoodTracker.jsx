@@ -24,7 +24,7 @@ const MoodTracker = () => {
   const [selectedMood, setSelectedMood] = useState(null); // for mood ID selection
   const [editingEntry, setEditingEntry] = useState(null); // store entry being edited (or null)
   const [note, setNote] = useState("");
-  //const [history, setHistory] = useState([]); // raw fetched data
+  const [history, setHistory] = useState([]); // raw fetched data
   const [summary, setSummary] = useState(null);
 
   // States for sorting and filtering
@@ -105,23 +105,6 @@ const MoodTracker = () => {
       totalEntries: history.length,
     };
   }
-
-const [history, setHistory] = useState([
-  {
-    id: 1,
-    date: new Date("2025-08-01T10:30:00"),
-    mood: {
-      icon: "/iconsEmoji/005-happy1.png",
-      label: "Happy",
-    },
-    note: "Had a great morning walk!",
-  },
-]);
-
-// Отключаем загрузку из бэка
-// useEffect(() => {
-//   fetchHistory();
-// }, []);
 
   useEffect(() => {
     setSummary(calculateSummary(history));
