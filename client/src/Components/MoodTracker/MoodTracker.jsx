@@ -107,6 +107,10 @@ const MoodTracker = () => {
   }
 
   useEffect(() => {
+    fetchHistory();
+  }, []);
+
+  useEffect(() => {
     setSummary(calculateSummary(history));
   }, [history]);
 
