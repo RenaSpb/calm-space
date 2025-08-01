@@ -7,8 +7,9 @@
 
 .sticker {
   position: relative; 
-  width: 500px;
+  width: 450px;
   height: 500px;
+  margin-top: 20px;
   background-image: url('/img/note.png');
   background-size: contain;
   background-repeat: no-repeat;
