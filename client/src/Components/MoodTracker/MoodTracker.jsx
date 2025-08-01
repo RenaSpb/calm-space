@@ -11,54 +11,154 @@ const moods = [
   { id: "tired", label: "Tired", icon: "/iconsEmoji/002-sleep1.png" },
 ];
 
+const moodScale = {
+  Happy: 5,
+  Calm: 4,
+  Neutral: 3,
+  Tired: 2,
+  Sad: 1,
+  Anxious: 0,
+};
+
 const MoodTracker = () => {
-  const [selectedMood, setSelectedMood] = useState(null);
+  const [selectedMood, setSelectedMood] = useState(null); // for mood ID selection
+  const [editingEntry, setEditingEntry] = useState(null); // store entry being edited (or null)
   const [note, setNote] = useState("");
-  const [history, setHistory] = useState([]);
+  const [history, setHistory] = useState([]); // raw fetched data
+  const [summary, setSummary] = useState(null);
+
+  // States for sorting and filtering
+  const [sortOrder, setSortOrder] = useState("desc");
+  const [filterMood, setFilterMood] = useState("");
 
   const handleMoodClick = (moodId) => {
     setSelectedMood(moodId);
+    setEditingEntry(null); // new mood, no editing entry
+    setNote("");
   };
 
+  // Open modal to edit existing mood entry
+  const handleEditClick = (entry) => {
+    setEditingEntry(entry);
+    setSelectedMood(
+      moods.find((m) => m.label.toLowerCase() === entry.mood.label.toLowerCase())?.id ||
+      null
+    );
+    setNote(entry.note || "");
+  };
+
+  // Fetch all moods from backend (no filtering or sorting here)
   const fetchHistory = async () => {
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/mood`);
       if (!response.ok) throw new Error("Failed to fetch moods");
       const data = await response.json();
+
       setHistory(
-        data.map((entry) => ({
-          mood: moods.find((m) => m.label === entry.mood) || {
-            icon: "❓",
-            label: entry.mood,
-          },
-          note: entry.note,
-          date: new Date(entry.created_at).toLocaleString(),
-        }))
+        Array.isArray(data)
+          ? data.map((entry) => ({
+              id: entry.id, // make sure to keep id for updates
+              mood:
+                moods.find(
+                  (m) =>
+                    m.label.toLowerCase() === (entry.mood || "").toLowerCase()
+                ) || {
+                  icon: "❓",
+                  label: entry.mood || "Unknown",
+                },
+              note: entry.note,
+              date: entry.created_at ? new Date(entry.created_at) : new Date(0),
+            }))
+          : []
       );
     } catch (error) {
       console.error("Error loading mood history:", error);
+      setHistory([]);
     }
   };
+
+  // Calculate summary locally from history
+  function calculateSummary(history) {
+    if (!history.length) {
+      return { topMood: "N/A", average: "N/A", totalEntries: 0 };
+    }
+
+    const freq = {};
+    let totalScore = 0;
+
+    history.forEach(({ mood }) => {
+      const label = typeof mood === "string" ? mood : mood.label;
+      freq[label] = (freq[label] || 0) + 1;
+      totalScore += moodScale[label] ?? 3;
+    });
+
+    const topMood = Object.entries(freq).reduce(
+      (max, curr) => (curr[1] > max[1] ? curr : max),
+      ["N/A", 0]
+    )[0];
+
+    const average = (totalScore / history.length).toFixed(1);
+
+    return {
+      topMood,
+      average,
+      totalEntries: history.length,
+    };
+  }
 
   useEffect(() => {
     fetchHistory();
   }, []);
 
+  useEffect(() => {
+    setSummary(calculateSummary(history));
+  }, [history]);
+
+  const filteredAndSortedHistory = history
+    .filter((entry) => {
+      if (!filterMood) return true;
+      return entry.mood.label.toLowerCase() === filterMood.toLowerCase();
+    })
+    .sort((a, b) => {
+      if (sortOrder === "asc") {
+        return a.date - b.date;
+      } else {
+        return b.date - a.date;
+      }
+    });
+
+  // Save new mood or update existing mood entry
   const handleSave = async () => {
     if (!selectedMood) return;
+
     const selected = moods.find((m) => m.id === selectedMood);
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/mood`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ mood: selected.label, note }),
-      });
+      let response;
+      if (editingEntry) {
+        // Update existing mood entry (PUT)
+        response = await fetch(
+          `${import.meta.env.VITE_API_URL}/mood/${editingEntry.id}`,
+          {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ mood: selected.label, note }),
+          }
+        );
+      } else {
+        // Create new mood entry (POST)
+        response = await fetch(`${import.meta.env.VITE_API_URL}/mood`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ mood: selected.label, note }),
+        });
+      }
 
       if (!response.ok) throw new Error("Failed to save mood");
 
       await fetchHistory();
       setSelectedMood(null);
+      setEditingEntry(null);
       setNote("");
     } catch (error) {
       console.error("Error saving mood:", error);
@@ -69,6 +169,7 @@ const MoodTracker = () => {
   return (
     <div className="page-fade">
       <div className="dashboard">
+        {/* Left Panel - Mood Selection */}
         <div className="panel panel-left">
           <h2 className="panel-title">How are you feeling today?</h2>
           <div className="mood-options">
@@ -99,32 +200,92 @@ const MoodTracker = () => {
           </div>
         </div>
 
+        {/* Right Panel - Chart */}
         <div className="panel">
           <h2 className="panel-title">Mood Over Time</h2>
-          {history.length > 0 ? (
-            <MoodChart history={history} />
+          {filteredAndSortedHistory.length > 0 ? (
+            <MoodChart history={filteredAndSortedHistory} />
           ) : (
             <p>No data yet</p>
           )}
         </div>
       </div>
 
-      {selectedMood && (
-        <Modal onClose={() => setSelectedMood(null)}>
+      {/* Controls for Sorting & Filtering */}
+      <div className="controls">
+        <div className="sort-controls">
+          <label>Sort by:</label>
+          <select
+            value={sortOrder}
+            onChange={(e) => setSortOrder(e.target.value)}
+          >
+            <option value="desc">Newest First</option>
+            <option value="asc">Oldest First</option>
+          </select>
+        </div>
+        <div className="filter-controls">
+          <label>Filter by mood:</label>
+          <select
+            value={filterMood}
+            onChange={(e) => setFilterMood(e.target.value)}
+          >
+            <option value="">All</option>
+            {moods.map((m) => (
+              <option key={m.id} value={m.label}>
+                {m.label}
+              </option>
+            ))}
+          </select>
+        </div>
+      </div>
+
+      {/* Summary Section */}
+      <div className="mood-summary">
+        <h3>Mood Summary</h3>
+        {summary ? (
+          <>
+            <p>
+              <strong>Most frequent mood:</strong> {summary.topMood || "N/A"}
+            </p>
+            <p>
+              <strong>Average mood:</strong>{" "}
+              {summary.average ? Number(summary.average).toFixed(1) : "N/A"}
+            </p>
+            <p>
+              <strong>Total entries:</strong> {summary.totalEntries ?? 0}
+            </p>
+          </>
+        ) : (
+          <p>No summary available yet</p>
+        )}
+      </div>
+
+      {/* Modal for adding or editing mood */}
+      {(selectedMood || editingEntry) && (
+        <Modal onClose={() => {
+          setSelectedMood(null);
+          setEditingEntry(null);
+          setNote("");
+        }}>
           <button
             className="modal-close-btn"
-            onClick={() => setSelectedMood(null)}
+            onClick={() => {
+              setSelectedMood(null);
+              setEditingEntry(null);
+              setNote("");
+            }}
             aria-label="Close modal"
           >
             <img src="/icons/close.png" alt="Close" />
           </button>
           <h3>
-              <img
+            <img
               src={moods.find((m) => m.id === selectedMood)?.icon}
               alt={moods.find((m) => m.id === selectedMood)?.label}
               className="mood-icon"
-              />&nbsp;
-              {moods.find((m) => m.id === selectedMood)?.label}
+            />
+            &nbsp;
+            {moods.find((m) => m.id === selectedMood)?.label}
           </h3>
           <textarea
             placeholder="Hey! Tell me a little bit more, if you want to..."
@@ -139,32 +300,34 @@ const MoodTracker = () => {
         </Modal>
       )}
 
-      {history.length > 0 && (
-        <div className="mood-history">
-          <h3>Mood History</h3>
+      {/* Mood History */}
+      <div className="mood-history">
+        <h3>Mood History</h3>
+        {filteredAndSortedHistory.length > 0 ? (
           <ul>
-            {history.map((entry, index) => {
-              const moodObj =
-                typeof entry.mood === "string"
-                  ? moods.find((m) => m.label === entry.mood) || {
-                      icon: "❓",
-                      label: entry.mood,
-                    }
-                  : entry.mood;
-
-              return (
-                <li key={index}>
-                  <span>{entry.date}</span> —{" "}
-                  <strong>
-                    <img src={moodObj.icon} alt={moodObj.label} className="mood-icon" /> {moodObj.label}
-                  </strong>
-                  {entry.note && <p className="note">"{entry.note}"</p>}
-                </li>
-              );
-            })}
+            {filteredAndSortedHistory.map((entry, index) => (
+              <li key={index}>
+                <span>{entry.date.toLocaleString()}</span> —{" "}
+                <strong>
+                  <img
+                    src={entry.mood.icon}
+                    alt={entry.mood.label}
+                    className="mood-icon"
+                  />{" "}
+                  {entry.mood.label}
+                </strong>
+                {entry.note && <p className="note">"{entry.note}"</p>}
+                {/* Add edit button for each entry */}
+                <button onClick={() => handleEditClick(entry)} className="edit-btn">
+                  Edit
+                </button>
+              </li>
+            ))}
           </ul>
-        </div>
-      )}
+        ) : (
+          <p>No mood history available</p>
+        )}
+      </div>
     </div>
   );
 };

@@ -24,7 +24,10 @@ const MoodChart = ({ history }) => {
       typeof entry.mood === "string" ? entry.mood : entry.mood.label;
 
     return {
-      date: entry.date.split(",")[0],
+      date:
+        entry.date instanceof Date
+          ? entry.date.toLocaleDateString()
+          : String(entry.date),
       moodValue: moodScale[moodLabel] ?? 3,
     };
   });

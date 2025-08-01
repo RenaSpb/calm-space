@@ -25,34 +25,18 @@ router.post('/', async (req, res) => {
   }
 });
 
-// Read Moods get all moods(+ optional filters: by date, by type)
+//Get all info
 router.get('/', async (req, res) => {
-  const { startDate, endDate, type } = req.query;
+  console.log("🛠 Received query params (ignored):", req.query); 
 
-  let query = `SELECT * FROM moods WHERE 1=1`;
-  let params = [];
-  let idx = 1;
-
-  if (startDate) {
-    query += ` AND created_at >= $${idx++}`;
-    params.push(startDate);
-  }
-  if (endDate) {
-    query += ` AND created_at <= $${idx++}`;
-    params.push(endDate);
-  }
-  if (type) {
-    query += ` AND mood = $${idx++}`;
-    params.push(type);
-  }
-
-  query += ` ORDER BY created_at DESC`;
+  const query = `SELECT * FROM moods ORDER BY created_at DESC`;
 
   try {
-    const result = await pool.query(query, params);
+    const result = await pool.query(query);
+    console.log("✅ Query executed:", query); 
     res.json(result.rows);
   } catch (error) {
-    console.error('Error fetching moods:', error);
+    console.error('❌ Error fetching moods:', error);
     res.status(500).json({ error: 'Internal server error' });
   }
 });
@@ -101,42 +85,6 @@ router.put('/:id', async (req, res) => {
     res.json({ message: 'Mood updated', mood: result.rows[0] });
   } catch (error) {
     console.error('Error updating mood:', error);
-    res.status(500).json({ error: 'Internal server error' });
-  }
-});
-
-// Summary endpoint (weekly report/monthly report)
-router.get('/summary', async (req, res) => {
-  const { period = 'week' } = req.query;
-
-  const groupBy =
-    period === 'month'
-      ? "TO_CHAR(created_at, 'YYYY-MM')"  // group by month
-      : "TO_CHAR(created_at, 'IYYY-IW')"; // group by week
-
-  try {
-    const result = await pool.query(
-      `
-      SELECT ${groupBy} as period,
-             AVG(
-               CASE mood
-                 WHEN 'Happy' THEN 5
-                 WHEN 'Calm' THEN 4
-                 WHEN 'Neutral' THEN 3
-                 WHEN 'Tired' THEN 2
-                 WHEN 'Sad' THEN 1
-                 WHEN 'Anxious' THEN 0
-               END
-             ) as avg_mood
-      FROM moods
-      GROUP BY period
-      ORDER BY period DESC;
-      `
-    );
-
-    res.json(result.rows);
-  } catch (error) {
-    console.error('Error fetching summary:', error);
     res.status(500).json({ error: 'Internal server error' });
   }
 });
