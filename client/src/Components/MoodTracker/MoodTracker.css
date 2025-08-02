@@ -1,3 +1,7 @@
+h2.panel-title {
+  margin-top: 0;
+}
+
 .dashboard {
   display: flex;
   flex-wrap: wrap;
@@ -115,7 +119,7 @@
 
 .modal textarea:hover,
 .modal textarea:focus {
-  border-color: #986512; 
+  border-color: #986512;
   outline: none;
   box-shadow: 0 0 4px rgba(176, 118, 24, 0.4);
 }
@@ -181,7 +185,6 @@
   font-size: 1.4rem;
   font-weight: 600;
   color: #2c2b29;
-  margin-bottom: 1rem;
   font-family: system-ui, sans-serif;
 }
 
@@ -189,9 +192,9 @@
   list-style: none;
   padding: 0;
   margin: 0;
-  display: inline-flex; 
+  display: inline-flex;
   flex-direction: column;
-  align-items: stretch; 
+  align-items: stretch;
   gap: 1rem;
 }
 
@@ -298,54 +301,80 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 2rem;
+  margin: 1rem auto 0;
+  gap: 1rem;
   flex-wrap: wrap;
-  margin-top: 1rem;
-  background-color: rgba(249, 244, 238, 0.4);
-  padding: 0.5rem 1.5rem;
+  padding: 0.5rem 0;
   border-radius: 12px;
-  box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.1);
+  max-width: 260px;
 }
 
 .sort-controls,
 .filter-controls {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
-  font-family: system-ui, sans-serif;
+}
+
+.history-controls select {
   color: #2c2b29;
-}
-
-.controls label {
-  font-weight: 600;
-}
-
-.controls select {
-  color: #2c2b29; 
-  background: #fffaf4;
+  background-color: #fff6ec;
   border: 1px solid #ccc;
   border-radius: 8px;
-  padding: 0.4rem 0.8rem;
   font-family: inherit;
-  
+  font-size: 1rem;
+  height: 30px;
+  padding: 0 0.5rem 0 2rem;
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
+  background-repeat: no-repeat;
+  background-position: 8px center;
+  background-size: 18px;
+  cursor: pointer;
 }
 
-.controls select:focus {
-  color: #2c2b29; 
-  outline: none;
-  border-color: #91a985;
-  box-shadow: none;
+.history-controls select option {
+  background-color: #fff6ec; 
+  color: #2c2b29;
 }
 
-.controls select:hover {
+.history-controls select:hover {
   border-color: #8a7e6a;
   box-shadow: 0 0 4px rgba(176, 118, 24, 0.3);
 }
 
+.history-controls select:focus {
+  outline: none;
+  border-color: #91a985;
+}
 
+.history-controls .sort-select {
+  background-image: url('/icons/sort.png');
+}
+
+.history-controls .filter-select {
+  background-image: url('/icons/filter.png');
+}
+
+.mood-history-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.history-controls {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.history-controls select {
+  height: 30px;
+  font-size: 0.9rem;
+  padding-left: 2rem; /* для иконки */
+}
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -373,27 +402,25 @@
   .controls {
     gap: 1rem;
     padding: 0.8rem;
-    max-width: 500px; 
-    margin-left: auto; 
+    max-width: 500px;
+    margin-left: auto;
     margin-right: auto;
   }
-
 }
 
 @media (max-width: 768px) {
   .panel {
-  width: 100%;
+    width: 100%;
   }
 
   .mood-btn {
-  width: 90px;
-  height: 50px;
-}
+    width: 90px;
+    height: 50px;
+  }
 
   .controls {
-    flex-direction: column;
     gap: 1rem;
-    padding: 0.8rem;
+    max-width: 500px;
   }
 
   .sort-controls,
@@ -401,13 +428,13 @@
     justify-content: center;
   }
 
-.mood-options {
-  padding-top: 0px;
-}
+  .mood-options {
+    padding-top: 0;
+  }
 
-.modal {
-  width: 90%;
-  max-width: 300px;
-  padding: 1.2rem;
+  .modal {
+    width: 90%;
+    max-width: 300px;
+    padding: 1.2rem;
   }
 }

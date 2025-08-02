@@ -231,22 +231,23 @@ const MoodTracker = () => {
       </div>
 
       {/* Controls for Sorting & Filtering */}
-      <div className="controls">
+      {/* <div className="controls">
         <div className="sort-controls">
-          <label>Sort by:</label>
           <select
             value={sortOrder}
             onChange={(e) => setSortOrder(e.target.value)}
+            className="icon-select sort-select"
           >
-            <option value="desc">Newest First</option>
-            <option value="asc">Oldest First</option>
+            <option value="desc">New</option>
+            <option value="asc">Old</option>
           </select>
         </div>
+
         <div className="filter-controls">
-          <label>Filter by mood:</label>
           <select
             value={filterMood}
             onChange={(e) => setFilterMood(e.target.value)}
+            className="icon-select filter-select"
           >
             <option value="">All</option>
             {moods.map((m) => (
@@ -256,7 +257,7 @@ const MoodTracker = () => {
             ))}
           </select>
         </div>
-      </div>
+      </div> */}
 
       {/* Modal for adding or editing mood */}
       {(selectedMood || editingEntry) && (
@@ -301,36 +302,64 @@ const MoodTracker = () => {
       )}
 
       {/* Mood History */}
-      <div className="mood-history">
-        <h3>Mood History</h3>
-        {filteredAndSortedHistory.length > 0 ? (
-          <ul>
-            {filteredAndSortedHistory.map((entry, index) => (
-              <li key={index}>
-                <span>{entry.date.toLocaleString()}</span>
-                <strong>
-                  <img
-                    src={entry.mood.icon}
-                    alt={entry.mood.label}
-                    className="mood-icon"
-                  />{" "}
-                  {entry.mood.label}
-                </strong>
-                {entry.note && <p className="note">"{entry.note}"</p>}
-                {/* Add edit button for each entry */}
-                <button
-                  onClick={() => handleEditClick(entry)}
-                  className="edit-btn"
-                >
-                  <img src="icons/edit.png" alt="Edit" className="edit-icon" />
-                </button>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p>No mood history available</p>
-        )}
-      </div>
+<div className="mood-history">
+  <div className="mood-history-header">
+    <h3>Mood History</h3>
+
+    <div className="history-controls">
+      <select
+        value={sortOrder}
+        onChange={(e) => setSortOrder(e.target.value)}
+        className="icon-select sort-select"
+      >
+        <option value="desc">New</option>
+        <option value="asc">Old</option>
+      </select>
+
+      <select
+        value={filterMood}
+        onChange={(e) => setFilterMood(e.target.value)}
+        className="icon-select filter-select"
+      >
+        <option value="">All</option>
+        {moods.map((m) => (
+          <option key={m.id} value={m.label}>
+            {m.label}
+          </option>
+        ))}
+      </select>
+    </div>
+  </div>
+
+  {filteredAndSortedHistory.length > 0 ? (
+    <ul>
+      {filteredAndSortedHistory.map((entry, index) => (
+        <li key={index}>
+          <span>{entry.date.toLocaleString()}</span>
+          <strong>
+            <img
+              src={entry.mood.icon}
+              alt={entry.mood.label}
+              className="mood-icon"
+            />{" "}
+            {entry.mood.label}
+          </strong>
+          {entry.note && <p className="note">"{entry.note}"</p>}
+          <button
+            onClick={() => handleEditClick(entry)}
+            className="edit-btn"
+          >
+            <img src="icons/edit.png" alt="Edit" className="edit-icon" />
+          </button>
+        </li>
+      ))}
+    </ul>
+  ) : (
+    <p>No mood history available</p>
+  )}
+</div>
+
+
     </div>
   );
 };
