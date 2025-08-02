@@ -115,6 +115,8 @@
   font-size: 0.9rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
   transition: all 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
 }
 
 .clear-button:hover {
@@ -123,6 +125,10 @@
   transform: translateY(-1px); 
 }
 
+.clear-button:focus {
+  outline: none; 
+  box-shadow: none; 
+}
 
 @media (max-width: 900px) {
 .chat-helper {
