@@ -230,35 +230,6 @@ const MoodTracker = () => {
         </div>
       </div>
 
-      {/* Controls for Sorting & Filtering */}
-      {/* <div className="controls">
-        <div className="sort-controls">
-          <select
-            value={sortOrder}
-            onChange={(e) => setSortOrder(e.target.value)}
-            className="icon-select sort-select"
-          >
-            <option value="desc">New</option>
-            <option value="asc">Old</option>
-          </select>
-        </div>
-
-        <div className="filter-controls">
-          <select
-            value={filterMood}
-            onChange={(e) => setFilterMood(e.target.value)}
-            className="icon-select filter-select"
-          >
-            <option value="">All</option>
-            {moods.map((m) => (
-              <option key={m.id} value={m.label}>
-                {m.label}
-              </option>
-            ))}
-          </select>
-        </div>
-      </div> */}
-
       {/* Modal for adding or editing mood */}
       {(selectedMood || editingEntry) && (
         <Modal
